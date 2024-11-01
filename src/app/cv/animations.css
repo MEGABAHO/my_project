@@ -1,0 +1,50 @@
+.card {
+    animation-name: translateX;
+    animation-duration: 0.3s;
+    animation-timing-function: cubic-bezier(.02,.49,.98,1.01) ;
+    animation-delay: 1s;
+    animation-fill-mode: backwards;
+}
+@keyframes translateX {
+    from {
+        transform: translateX(43rem);
+    }
+    to {
+        transform: translateX(-15px);
+    }
+}
+/*.name-wrapper {*/
+/*    animation-duration: 5s;*/
+/*    animation-name: name-animation;*/
+/*    animation-iteration-count: infinite;*/
+/*    animation-direction: alternate;*/
+/*    animation-timing-function: ease-in-out;*/
+/*}*/
+/*@keyframes name-animation {*/
+/*    0% {*/
+/*        transform: translateX(0) translateY(0) rotate(0) scale(1);*/
+/*    }*/
+/*    50% {*/
+/*        transform: translateX(-56px) translateY(30px) rotate(15deg) scale(0.5);*/
+/*    }*/
+/*    100% {*/
+/*        transform: translateX(35px) translateY(20px) rotate(5deg) scale(1.5);*/
+/*    }*/
+/*}*/
+.competences-acquises,
+.contacts-border,
+.hobbies {
+    animation-name: animation-sidebar;
+    animation-duration: 0.8s;
+    animation-timing-function: linear;
+    animation-direction: reverse;
+    animation-delay: 1.3s;
+}
+@keyframes animation-sidebar {
+    from {
+        transform: translateX(0px);
+    }
+    to {
+        transform: translateX(-250px);
+    }
+}
