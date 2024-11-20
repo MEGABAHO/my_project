@@ -20,7 +20,7 @@ export default function Navigation() {
                     buttonsRoute.map((el)=>(
                        <li key={el.path} >
                            <Link href={el.path}>
-                           <button  className={"font-semibold shadow-white shadow-lg nav-btn my-2"}>
+                           <button  className={"transition active:scale-[1.1] font-semibold shadow-white shadow-lg nav-btn my-2"}>
                                {el.name}
                            </button>
                            </Link>
