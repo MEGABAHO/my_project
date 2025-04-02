@@ -3,17 +3,24 @@ import "../cv/style.css"
 import "../cv/cube.css"
 import "../cv/animations.css"
 import LinkPrint from "@/components/link-print";
+import {EnvelopeOpenIcon, LinkedInLogoIcon, BellIcon, DownloadIcon, CopyIcon} from '@radix-ui/react-icons';
 
 
 export default function Cv() {
     return (
 
-        <div className="page">
+        <div className="page w-[1000px]" id={"print-zone"}>
             <div className="header-block">
                 <div className="scene">
                     <div className="cube">
-                        <div className="cube-part front">1</div>
-                        <div className="cube-part back">2</div>
+                        <div className=" cube-part front overflow-hidden">
+                            <img src="/IMG_3649.JPG" alt="principle photo" className="photo object-cover h-full "/>
+
+                        </div>
+                        <div className="cube-part back overflow-hidden">
+                        <img src="/cuisinier.jpg" alt="cuisinier photo"
+                                                             className="object-cover"/>
+                        </div>
                         <div className="cube-part left">3</div>
                         <div className="cube-part right">4</div>
                         <div className="cube-part bottom">5</div>
@@ -26,13 +33,12 @@ export default function Cv() {
                     </h1>
                 </div>
                 <div className={"profil"}>
-                    <h2 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-gray-900 via-sky-300 to-yellow-100 bg-clip-text text-transparent">Profil
-                        professionnel:</h2>
-                    <p> Actualement en reconversion professionnelle <br/>
-                        Je suis en recherche d'un stage Bac +4 <br/>
-                        <span className={"font-bold"}>"Développeur d'application Javascript React"</span><br/>
-                        et par la suite <br/>
-                        "Développeur Full-Stack Bac +5 Java et Angular"
+                    <h2 className="logo-profil text-3xl font-bold tracking-tight bg-gradient-to-r from-gray-900 via-sky-300 to-yellow-100 bg-clip-text text-transparent">
+                        Profil professionnel:</h2>
+                    <p> Actuellement en reconversion, je recherche une alternance Bac +4<br/>
+                        en <span className={"font-bold"}>développement JavaScript (React.js, Next.js, Node.js) </span><br/>
+                        fin de renforcer mes compétences et contribuer activement <br/> à des projets innovants. Mon objectif est d’évoluer vers un rôle de <br/>
+                        <span className={"font-bold"}>développeur Full-Stack Java et Angular (Bac +5).</span>
                     </p>
                 </div>
             </div>
@@ -41,56 +47,60 @@ export default function Cv() {
                 <div className="competences">
                     <fieldset className="competences-acquises">
                         <legend className="title-comp">Compétences acquises</legend>
-                        <ul className="list-comp">
+                        <ul className="list-comp ">
                             <li>La Base
-                                <ul>
+                                <ul className={" flex justify-center gap-3 mt-0 pt-0"}>
                                     <li>Java</li>
                                     <li>Spring</li>
                                     <li>Kotlin</li>
                                 </ul>
                             </li>
-                            <li>HTML</li>
-                            <li>CSS</li>
-                            <li>Java Script</li>
-                            <li>Type Script</li>
-                            <li>React</li>
-                            <li>JQuery</li>
-                            <li>GIT, GitHub</li>
+                            <fieldset className={"comp-avance border-2"}>
+                                <legend className={"text-center font-semibold"}>Avancé</legend>
+                                <li className={"text-xl"}>HTML, CSS</li>
+                                <li className={'text-xl font-semibold'}>JavaScript TypeScript</li>
+                                <li className={"text-xl"}>Prisma, Node.js Zustand</li>
+                                <li className={"text-xl font-bold"}>React Next.js Tailwind</li>
+                                <li>JQuery Vanilla-JS Vite-React</li>
+                                <li className={"text-xl"}><span className={"font-semibold"}>Redux </span>GIT GitHub</li>
+                            </fieldset>
                         </ul>
                     </fieldset>
                 </div>
                 <fieldset className="contacts-border">
                     <legend>Contacts</legend>
                     <address className="contacts">
-                        <div>
+                        <div className={"flex  items-center gap-2"}>
+                            <EnvelopeOpenIcon/>
                             <a
                                 className="link-contacts email"
                                 href="mailto:topychkanov@hotmail.fr"
-                            ><span className="material-symbols-outlined">Mail</span>
-                                Topychkanov@hotmail.fr</a>
+                            >Topychkanov@hotmail.fr</a>
                         </div>
-                        <div>
-                            <a className="link-contacts"
-                               href="https://www.facebook.com/profile.php?id=100009857316527&sk=about"
+                        <div className={"LinkedIn flex  items-center gap-2"}>
+                            <LinkedInLogoIcon/>
+                            <a className={"link-contacts text-xl"}
+                               href="https://www.linkedin.com/in/ivan-topychkanov/"
                                target="_blank"
-                            ><span className="material-symbols-outlined">Contacts</span>Facebook</a>
+                            >LinkedIn</a>
                         </div>
-                        <div className="pulse">
+                        <div className="flex bg-zinc-200 rounded-3xl items-center gap-2">
+                            <BellIcon/>
                             <a className="link-contacts" href="tel:+33638687255"
-                            ><span className="material-symbols-outlined">
-                            phone</span> +33638687255</a>
+                            >(+33) 06 38 68 72 55</a>
                         </div>
-                        <div>
-                            <a className="link-contacts" href="#" download="CV Ivan Topychkanov"
-                            ><span className="material-symbols-outlined">Download</span>Download CV</a
-                            >
+                        <div className="Download flex  items-center gap-2">
+                            <DownloadIcon/>
+                            <a className="link-contacts text-xl" href="#" download="CV Ivan Topychkanov"
+                            >Download CV</a>
                         </div>
-                        <div>
+                        <div className="Print flex  items-center gap-2">
+                            <CopyIcon/>
                             <LinkPrint/>
                         </div>
                     </address>
                 </fieldset>
-                <fieldset className={"langues h-28 w-24 text-xl"}>
+                <fieldset className={"langues h-fit w-full text-xl"}>
                     <legend className={"text-center"}>Languages</legend>
                     <ul>
                         <p>English - good level</p>
@@ -103,7 +113,7 @@ export default function Cv() {
                     <ul>
                         <li>IT industrie et technologies</li>
                         <li>Cuisine du monde</li>
-                        <li>Online Holdem poker</li>
+                        <li>Online Hold'em poker</li>
                         <li>l'exploration du monde</li>
                         <li>Développement personnel</li>
                         <li>Sport et restauration</li>
@@ -140,7 +150,7 @@ export default function Cv() {
                     <div className="card">
                         <div className="card-front">
                             <div className="exp-h4">
-                                <h4>Assistant stock manager</h4>
+                                <h4 className={"font-semibold"}>Assistant stock manager</h4>
                                 <h4>2004-2007</h4>
                             </div>
                             <ul className="exp-list">
@@ -158,7 +168,7 @@ export default function Cv() {
                     <div className="card">
                         <div className="card-front">
                             <div className="exp-h4">
-                                <h4>Déclarant en douane maritime</h4>
+                                <h4 className={"font-semibold"}>Déclarant en douane maritime</h4>
                                 <h4>2000-2003</h4>
                             </div>
                             <ul className="exp-list">
@@ -175,7 +185,7 @@ export default function Cv() {
                     <div className="card">
                         <div className="card-front">
                             <div className="exp-h4">
-                                <h4>Technicien de maintenance informatique <br/>
+                                <h4 className={"font-semibold"}>Technicien de maintenance informatique <br/>
                                     et assembleur d'ordinateurs</h4>
                                 <h4>1998-1999</h4>
                             </div>
@@ -190,24 +200,18 @@ export default function Cv() {
                         </p></div>
                     </div>
                 </div>
-                <div className=" item ">
-                    <div className="card">
-                        <div className="card-front">
 
-                        </div>
-                        <div className="card-back">
-
-                        </div>
-                    </div>
-                </div>
             </div>
 
             <div className="footer-block">
-                <h3 className="title_education">Éducation</h3>
-                <div className=" font-light h-2.5 education">
-                    Gestion restauration collective (BAC+2) 2019 IFETH, France <br/>
-                    Économiste en finance et crédit (Master) 2004 Université d’Etat de Russie <br/>
-                    Bac Pro Cuisinier – Pâtissier 1998 Lycée Professionnelle, Russie
+                <h3 className="font-medium title_education">Éducation</h3>
+                <div className="w-full space-y-1 font-semibold education">
+                    <p className={"flex justify-between "}>Gestion restauration collective (BAC+2)<span
+                        className={"pr-5"}>2019 IFETH, France</span></p>
+                    <p className={"flex justify-between "}>Économiste en finance et crédit (Master)<span
+                        className={"pr-5"}>2004 Université d’Etat de Russie</span></p>
+                    <p className={"flex justify-between "}>Bac Pro Cuisinier – Pâtissier<span className={"pr-5"}>1998 Lycée Professionnelle, Russie</span>
+                    </p>
                 </div>
             </div>
 

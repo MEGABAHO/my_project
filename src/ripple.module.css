@@ -1,0 +1,54 @@
+.rippleContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.ripple {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+}
+
+.ripple::before,
+.ripple::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    filter: blur(1px);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 7px 7px 14px #717195, -7px -7px 14px #cdcde4;
+}
+
+.ripple::before {
+    background: linear-gradient(to bottom right, #576395 0%, #8f8fe6 100%);
+    animation: waves 0.4s linear forwards;
+}
+
+.ripple::after {
+    background: rgba(17, 5, 124, 0.5);
+    animation: waves 0.4s linear 0.15s forwards;
+}
+
+@keyframes waves {
+    from {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(10);
+    }
+}

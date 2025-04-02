@@ -21,7 +21,6 @@
     color: white;
     text-align: center;
     line-height: 200px;
-    box-shadow: 0 0 60px rgb(228, 132, 206);
     border-radius: 0;
 
     opacity: 0.8;
@@ -33,10 +32,10 @@
     /*background: url(https://img.freepik.com/free-vector/white-technology-background_23-2148390328.jpg?w=740&t=st=1712143117~exp=1712143717~hmac=8543a1e99664bb913790c25c04fd2b57936ea2bb7e425074b6b7100c327e6862);*/
     transform: translateZ(100px);
     opacity: 1;
-    box-shadow: 0 0 80px rgb(201, 117, 173) inset;
 }
 
 .image-front {
+
     transform: scale(1.2);
     border-radius: 50%;
     width: 100%;
@@ -45,6 +44,7 @@
 }
 
 .back {
+
     opacity: 1;
     background-color: rgb(193, 68, 143);
     transform: rotateY(-180deg) translateZ(100px);
@@ -56,6 +56,7 @@
 }
 
 .left {
+
     opacity: 1;
     background-color: rgb(240, 42, 58);
     transform: rotateY(-90deg) translateZ(100px);
@@ -74,6 +75,7 @@
 }
 
 .top {
+
     background-color: cadetblue;
     opacity: 1;
     transform: rotateX(90deg) translateZ(100px);

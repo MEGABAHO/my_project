@@ -4,17 +4,74 @@
     box-sizing: border-box;
 }
 
-@media print {
-    .card-back {
-        display: none;
-    }
 
+@media print and (-webkit-min-device-pixel-ratio: 0) {
     .header-media {
         display: none;
     }
 
+    .header-block,
+    .experiences,
+    .footer-block,
+    .sidebar {
+        box-shadow: none !important;
+    }
+    .LinkedIn,
+    .Download,
+    .Print {
+        display: none;
+    }
     .footer-media {
         display: none;
+    }
+    .page {
+        display: block;
+        width: 100%;
+    }
+    #print-zone {
+        height: 1300px;
+    }
+    .card-back {
+        display: none;
+    }
+    .cube {
+        transform: rotateY(0deg); /* Установить фронтальную сторону вперед */
+    }
+    .cube-part {
+        display: none;
+    }
+    .front {
+        display: block !important;
+        width: 230px !important;
+        height: 230px !important;
+    }
+    .name-gredient {
+        opacity: 0.9;
+        background: none !important;
+        -webkit-text-fill-color: #4e2979 !important;
+        background-clip: initial !important;
+    }
+    .logo-profil {
+        opacity: 0.9;
+        background: none !important;
+        -webkit-text-fill-color: #4e2979 !important;
+        background-clip: initial !important;
+    }
+    .title-comp {
+
+        width: 200px;
+        height: 30px;
+        font-size: 15px;
+        font-weight: 600;
+        box-shadow: 0 0 20px #2d7caa inset !important;
+        border-radius: 40px 5px / 20px 10px 30px;
+    }
+
+    .hobbies,
+    .langues,
+    .contacts-border,
+    .competences {
+        margin-bottom: auto !important;
     }
 }
 
@@ -40,8 +97,6 @@ body {
     gap: 0;
 
 
-    width: 1000px;
-    height: 1355px;
     background: url(https://img.freepik.com/free-vector/white-technology-background_23-2148390328.jpg?w=740&t=st=1712143117~exp=1712143717~hmac=8543a1e99664bb913790c25c04fd2b57936ea2bb7e425074b6b7100c327e6862) no-repeat;
     background-size: cover;
     margin: 0;
@@ -67,7 +122,6 @@ body {
     justify-content: space-between;
     grid-column: span 3;
     position: relative;
-    height: auto;
     padding-top: 1px;
     padding-bottom: 0;
 
@@ -122,15 +176,14 @@ body {
 
 
 .sidebar {
-    min-height: 800px;
     grid-row-start: 2;
     grid-row-end: 4;
 
     display: flex;
     flex-direction: column;
-    justify-content: end;
-    height: auto;
+    justify-content: start;
     padding: 0 15px;
+
 }
 
 .competences-acquises {
@@ -159,14 +212,18 @@ body {
     margin: 0;
     list-style: none;
 }
+.comp-avance {
+    box-shadow: 0 0 190px 10px #785eb6 ;
+}
 
 .list-comp > li > ul {
     list-style: none;
 }
 
+
 .contacts-border {
     padding: 10px 10px 10px 25px;
-    box-shadow: 0 0 40px 15px #f0ccbc;
+    box-shadow: 0 0 95px 15px #2d7caa;
     border-radius: 20px;
     margin-bottom: 15px;
     transition: 0.3s linear;
@@ -184,7 +241,6 @@ body {
 .link-contacts {
     display: flex;
     flex-direction: row;
-    align-items: center;
     color: var(--link-color);
     text-decoration: none;
 }
@@ -210,15 +266,14 @@ ul {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: auto;
     padding: 0 15px;
 
 }
 
 .item {
-    width: 42rem;
+    width: 100%;
     height: 10.625rem;
-    margin: 10px auto;
+    margin: 10px;
     perspective: 500px;
 }
 
@@ -280,7 +335,7 @@ ul {
     align-items: self-start;
     display: flex;
     padding: 0 15px;
-    height: 85px;
+    height: auto;
 
 }
 
@@ -298,12 +353,16 @@ ul {
 
 .hobbies {
     padding-left: 18px;
+    margin-bottom: 20px;
+
+
 }
 
 .langues {
-    border: solid 5px #7b98be;
+    border: solid 5px #aec3bf;
     width: auto;
-    height: 200px;
     border-radius: 15px;
-    margin-bottom: auto;
+    box-shadow: 0 1px 90px 10px #785eb6, inset 0 0 90px 2px #785eb6 ;
 }
+
+

@@ -4,7 +4,7 @@ import Cv from "@/app/cv/cv";
 export default function Page() {
     return (
         <main>
-            <Cv/>
+            <Cv />
         </main>
     )
 }
