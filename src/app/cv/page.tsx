@@ -1,4 +1,4 @@
-import CvClientWrapper from "@/components/cv-client-wrapper";
+import Cv from "@/app/cv/cv";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default function Page() {
     return (
         <main>
-            <CvClientWrapper />
+            <Cv />
         </main>
     )
 }
