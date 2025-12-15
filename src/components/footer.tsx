@@ -1,19 +1,13 @@
-"use client"
-import { useEffect, useState } from "react";
 
 export default function Footer() {
-    const [currentYear, setCurrentYear] = useState<number | null>(null);
-    
-    useEffect(() => {
-        // Set year only on client side to avoid hydration mismatch
-        setCurrentYear(new Date().getFullYear());
-    }, []);
+    // Use static year to avoid hydration issues
+    const currentYear = 2025;
     
     return (
         <footer className={"footer-media grid grid-cols-1 justify-items-center w-full border-t border-white/20 mt-auto py-6"}>
             <div className="text-center space-y-2">
                 <p className="text-sm text-gray-600 dark:text-gray-400">
-                    © {currentYear || 2025} Ivan Topychkanov. All rights reserved.
+                    © {currentYear} Ivan Topychkanov. All rights reserved.
                 </p>
                 <div className="flex gap-4 justify-center text-sm">
                     <a 
