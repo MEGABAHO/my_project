@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import "../cv/style.css"
 import "../cv/cube.css"
@@ -91,8 +92,10 @@ export default function Cv() {
                         </div>
                         <div className="Download flex  items-center gap-2">
                             <DownloadIcon/>
-                            <a className="link-contacts text-xl" href="#" download="CV Ivan Topychkanov"
-                            >Download CV</a>
+                            <button 
+                                className="link-contacts text-xl cursor-pointer" 
+                                onClick={() => window.print()}
+                            >Download CV (Print to PDF)</button>
                         </div>
                         <div className="Print flex  items-center gap-2">
                             <CopyIcon/>
@@ -113,8 +116,8 @@ export default function Cv() {
                     <ul>
                         <li>IT industrie et technologies</li>
                         <li>Cuisine du monde</li>
-                        <li>Online Hold'em poker</li>
-                        <li>l'exploration du monde</li>
+                        <li>Online Hold&apos;em poker</li>
+                        <li>l&apos;exploration du monde</li>
                         <li>Développement personnel</li>
                         <li>Sport et restauration</li>
                     </ul>
@@ -128,7 +131,7 @@ export default function Cv() {
                     <div className="card">
                         <div className="card-front">
                             <h4>Actuellement en reconversion professionnelle vers Bac +4 <br/>
-                                <span className="metier">Développeur d'application <br/>
+                                <span className="metier">Développeur d&apos;application <br/>
                             Full-Stack</span></h4>
                             <h4>2024-actuelle</h4>
                         </div>
@@ -141,7 +144,7 @@ export default function Cv() {
                                 <li>Préparations culinaires</li>
                                 <li>Gestion de stock</li>
                                 <li>Gestion des commandes</li>
-                                <li>Management de l'équipe</li>
+                                <li>Management de l&apos;équipe</li>
                             </ul>
                         </div>
                     </div>
@@ -154,7 +157,7 @@ export default function Cv() {
                                 <h4>2004-2007</h4>
                             </div>
                             <ul className="exp-list">
-                                <li>Management de l'équipe</li>
+                                <li>Management de l&apos;équipe</li>
                                 <li>Analyse et prévision des ventes</li>
                                 <li>Gestion des commandes</li>
                                 <li>Gestion de base de données</li>
@@ -186,12 +189,12 @@ export default function Cv() {
                         <div className="card-front">
                             <div className="exp-h4">
                                 <h4 className={"font-semibold"}>Technicien de maintenance informatique <br/>
-                                    et assembleur d'ordinateurs</h4>
+                                    et assembleur d&apos;ordinateurs</h4>
                                 <h4>1998-1999</h4>
                             </div>
                             <ul className="exp-list">
-                                <li>Assemblage d'ordinateur</li>
-                                <li>Maintenance de système d'exploitation (Windows, Linux, MacOs)</li>
+                                <li>Assemblage d&apos;ordinateur</li>
+                                <li>Maintenance de système d&apos;exploitation (Windows, Linux, MacOs)</li>
                                 <li>Maintenance de système BIOS</li>
                             </ul>
                         </div>
