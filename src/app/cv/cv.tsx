@@ -16,16 +16,22 @@ export default function Cv() {
                     <div className="cube">
                         <div className=" cube-part front overflow-hidden">
                             <img src="/IMG_3649.JPG" alt="principle photo" className="photo object-cover h-full "/>
-
                         </div>
                         <div className="cube-part back overflow-hidden">
-                        <img src="/cuisinier.jpg" alt="cuisinier photo"
-                                                             className="object-cover"/>
+                            <img src="/cuisinier.jpg" alt="cuisinier photo" className="photo object-cover h-full"/>
                         </div>
-                        <div className="cube-part left">3</div>
-                        <div className="cube-part right">4</div>
-                        <div className="cube-part bottom">5</div>
-                        <div className="cube-part top">6</div>
+                        <div className="cube-part left overflow-hidden">
+                            <img src="/IMG_3649.JPG" alt="principle photo" className="photo object-cover h-full"/>
+                        </div>
+                        <div className="cube-part right overflow-hidden">
+                            <img src="/cuisinier.jpg" alt="cuisinier photo" className="photo object-cover h-full"/>
+                        </div>
+                        <div className="cube-part bottom overflow-hidden">
+                            <img src="/IMG_3649.JPG" alt="principle photo" className="photo object-cover h-full"/>
+                        </div>
+                        <div className="cube-part top overflow-hidden">
+                            <img src="/cuisinier.jpg" alt="cuisinier photo" className="photo object-cover h-full"/>
+                        </div>
                     </div>
                 </div>
                 <div className={"name-wrapper"}>
