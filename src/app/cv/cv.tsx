@@ -16,11 +16,11 @@ export default function Cv() {
                 <div className="scene">
                     <div className="cube">
                         <CubeImage src="/IMG_3649.JPG" alt="principle photo" face="front" />
-                        <CubeImage src="/cuisinier.jpg" alt="cuisinier photo" face="back" />
+                        <CubeImage src="/cuisinier.jpg" alt="cuisinier photo" face="back" objectPosition="center 35%" />
                         <CubeImage src="/IMG_3649.JPG" alt="principle photo" face="left" />
-                        <CubeImage src="/cuisinier.jpg" alt="cuisinier photo" face="right" />
+                        <CubeImage src="/cuisinier.jpg" alt="cuisinier photo" face="right" objectPosition="center 35%" />
                         <CubeImage src="/IMG_3649.JPG" alt="principle photo" face="bottom" />
-                        <CubeImage src="/cuisinier.jpg" alt="cuisinier photo" face="top" />
+                        <CubeImage src="/cuisinier.jpg" alt="cuisinier photo" face="top" objectPosition="center 35%" />
                     </div>
                 </div>
                 <div className={"name-wrapper"}>
