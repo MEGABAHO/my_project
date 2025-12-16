@@ -91,14 +91,13 @@
     height: 100%;
 }
 
-.cube:hover {
-    animation-play-state: running;
-}
-
 /* animation cube */
 .cube {
-    animation: cube 5s infinite alternate ease-in-out;
-    animation-play-state: paused;
+    animation: none;
+}
+
+.cube:hover {
+    animation: cube 5s infinite linear;
 }
 
 @keyframes cube {
