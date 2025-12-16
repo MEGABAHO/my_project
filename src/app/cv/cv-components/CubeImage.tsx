@@ -4,10 +4,10 @@ interface CubeImageProps {
     src: string;
     alt: string;
     face: 'front' | 'back' | 'left' | 'right' | 'top' | 'bottom';
-    objectPosition?: string;
+
 }
 
-export default function CubeImage({ src, alt, face, objectPosition }: CubeImageProps) {
+export default function CubeImage({ src, alt, face }: CubeImageProps) {
     return (
         <div className={`cube-part ${face}`}>
             <Image
@@ -15,7 +15,7 @@ export default function CubeImage({ src, alt, face, objectPosition }: CubeImageP
                 alt={alt}
                 fill
                 className="cube-image"
-                style={objectPosition ? { objectPosition } : undefined}
+
                 sizes="200px"
                 priority
             />
