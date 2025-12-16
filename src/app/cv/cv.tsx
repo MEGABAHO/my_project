@@ -6,6 +6,8 @@ import "../cv/animations.css"
 import LinkPrint from "@/components/link-print";
 import {EnvelopeOpenIcon, LinkedInLogoIcon, BellIcon, DownloadIcon, CopyIcon} from '@radix-ui/react-icons';
 import Cube from "./cv-components/Cube";
+import Name from "./cv-components/Name";
+import Profil from "./cv-components/Profil";
 
 
 export default function Cv() {
@@ -14,20 +16,8 @@ export default function Cv() {
         <div className="page w-[1000px]" id={"print-zone"}>
             <div className="header-block">
                 <Cube />
-                <div className={"name-wrapper"}>
-                    <h1 className={"name name-gredient"}>
-                        Ivan Topychkanov
-                    </h1>
-                </div>
-                <div className={"profil"}>
-                    <h2 className="logo-profil text-3xl font-bold tracking-tight bg-gradient-to-r from-gray-900 via-sky-300 to-yellow-100 bg-clip-text text-transparent">
-                        Profil professionnel:</h2>
-                    <p> Actuellement en reconversion, je recherche une alternance Bac +4<br/>
-                        en <span className={"font-bold"}>développement JavaScript (React.js, Next.js, Node.js) </span><br/>
-                        fin de renforcer mes compétences et contribuer activement <br/> à des projets innovants. Mon objectif est d’évoluer vers un rôle de <br/>
-                        <span className={"font-bold"}>développeur Full-Stack Java et Angular (Bac +5).</span>
-                    </p>
-                </div>
+                <Name />
+                <Profil />
             </div>
 
             <div className="sidebar">
