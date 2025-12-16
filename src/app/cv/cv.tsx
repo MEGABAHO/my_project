@@ -77,9 +77,9 @@ export default function Cv() {
                                 href="mailto:topychkanov@hotmail.fr"
                             >Topychkanov@hotmail.fr</a>
                         </div>
-                        <div className={"LinkedIn flex  items-center gap-2"}>
+                        <div className={"LinkedIn flex bg-zinc-200 rounded-3xl items-center gap-2"}>
                             <LinkedInLogoIcon/>
-                            <a className={"link-contacts text-xl"}
+                            <a className={"link-contacts link-contacts-no-visited text-xl"}
                                href="https://www.linkedin.com/in/ivan-topychkanov/"
                                target="_blank"
                             >LinkedIn</a>
@@ -89,23 +89,41 @@ export default function Cv() {
                             <a className="link-contacts" href="tel:+33638687255"
                             >(+33) 06 38 68 72 55</a>
                         </div>
-                        <div className="Download flex  items-center gap-2">
+                        <div className="Download flex bg-zinc-200 rounded-3xl items-center gap-2">
                             <DownloadIcon/>
                             <a className="link-contacts text-xl" href="#" download="CV Ivan Topychkanov"
                             >Download CV</a>
                         </div>
-                        <div className="Print flex  items-center gap-2">
+                        <div className="Print flex bg-zinc-200 rounded-3xl items-center gap-2">
                             <CopyIcon/>
                             <LinkPrint/>
                         </div>
                     </address>
                 </fieldset>
-                <fieldset className={"langues h-fit w-full text-xl"}>
-                    <legend className={"text-center"}>Languages</legend>
-                    <ul>
-                        <p>English - good level</p>
-                        <p>Russian - native</p>
-                        <p>French - fluent</p>
+                <fieldset className={"langues h-fit w-full"}>
+                    <legend className={"text-center font-semibold"}>Languages</legend>
+                    <ul className="langues-list">
+                        <li className="langue-item">
+                            <span className="flag-icon" role="img" aria-label="United Kingdom flag">🇬🇧</span>
+                            <div className="langue-info">
+                                <span className="langue-name">English</span>
+                                <span className="langue-level">Good level</span>
+                            </div>
+                        </li>
+                        <li className="langue-item">
+                            <span className="flag-icon" role="img" aria-label="Russian flag">🇷🇺</span>
+                            <div className="langue-info">
+                                <span className="langue-name">Russian</span>
+                                <span className="langue-level">Native</span>
+                            </div>
+                        </li>
+                        <li className="langue-item">
+                            <span className="flag-icon" role="img" aria-label="French flag">🇫🇷</span>
+                            <div className="langue-info">
+                                <span className="langue-name">French</span>
+                                <span className="langue-level">Fluent</span>
+                            </div>
+                        </li>
                     </ul>
                 </fieldset>
                 <div className="hobbies">
