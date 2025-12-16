@@ -3,11 +3,12 @@ import React from "react";
 import "../cv/style.css"
 import "../cv/cube.css"
 import "../cv/animations.css"
-import LinkPrint from "@/components/link-print";
-import {EnvelopeOpenIcon, LinkedInLogoIcon, BellIcon, DownloadIcon, CopyIcon} from '@radix-ui/react-icons';
 import Cube from "./cv-components/Cube";
 import Name from "./cv-components/Name";
 import Profil from "./cv-components/Profil";
+import Competences from "./cv-components/Competences";
+import Contacts from "./cv-components/Contacts";
+import Hobbies from "./cv-components/Hobbies";
 
 
 export default function Cv() {
@@ -21,64 +22,8 @@ export default function Cv() {
             </div>
 
             <div className="sidebar">
-                <div className="competences">
-                    <fieldset className="competences-acquises">
-                        <legend className="title-comp">Compétences acquises</legend>
-                        <ul className="list-comp ">
-                            <li>La Base
-                                <ul className={" flex justify-center gap-3 mt-0 pt-0"}>
-                                    <li>Java</li>
-                                    <li>Spring</li>
-                                    <li>Kotlin</li>
-                                </ul>
-                            </li>
-                            <fieldset className={"comp-avance border-2"}>
-                                <legend className={"text-center font-semibold"}>Avancé</legend>
-                                <li className={"text-xl"}>HTML, CSS</li>
-                                <li className={'text-xl font-semibold'}>JavaScript TypeScript</li>
-                                <li className={"text-xl"}>Prisma, Node.js Zustand</li>
-                                <li className={"text-xl font-bold"}>React Next.js Tailwind</li>
-                                <li>JQuery Vanilla-JS Vite-React</li>
-                                <li className={"text-xl"}><span className={"font-semibold"}>Redux </span>GIT GitHub</li>
-                            </fieldset>
-                        </ul>
-                    </fieldset>
-                </div>
-                <fieldset className="contacts-border">
-                    <legend>Contacts</legend>
-                    <address className="contacts">
-                        <div className={"flex  items-center gap-2"}>
-                            <EnvelopeOpenIcon/>
-                            <a
-                                className="link-contacts email"
-                                href="mailto:topychkanov@hotmail.fr"
-                            >Topychkanov@hotmail.fr</a>
-                        </div>
-                        <div className={"LinkedIn flex  items-center gap-2"}>
-                            <LinkedInLogoIcon/>
-                            <a className={"link-contacts text-xl"}
-                               href="https://www.linkedin.com/in/ivan-topychkanov/"
-                               target="_blank"
-                            >LinkedIn</a>
-                        </div>
-                        <div className="flex bg-zinc-200 rounded-3xl items-center gap-2">
-                            <BellIcon/>
-                            <a className="link-contacts" href="tel:+33638687255"
-                            >(+33) 06 38 68 72 55</a>
-                        </div>
-                        <div className="Download flex  items-center gap-2">
-                            <DownloadIcon/>
-                            <button 
-                                className="link-contacts text-xl cursor-pointer" 
-                                onClick={() => window.print()}
-                            >Download CV (Print to PDF)</button>
-                        </div>
-                        <div className="Print flex  items-center gap-2">
-                            <CopyIcon/>
-                            <LinkPrint/>
-                        </div>
-                    </address>
-                </fieldset>
+                <Competences />
+                <Contacts />
                 <fieldset className={"langues h-fit w-full text-xl"}>
                     <legend className={"text-center"}>Languages</legend>
                     <ul>
@@ -87,17 +32,7 @@ export default function Cv() {
                         <p>French - fluent</p>
                     </ul>
                 </fieldset>
-                <div className="hobbies">
-                    <h4>Hobbies</h4>
-                    <ul>
-                        <li>IT industrie et technologies</li>
-                        <li>Cuisine du monde</li>
-                        <li>Online Hold&apos;em poker</li>
-                        <li>l&apos;exploration du monde</li>
-                        <li>Développement personnel</li>
-                        <li>Sport et restauration</li>
-                    </ul>
-                </div>
+                <Hobbies />
             </div>
 
 
