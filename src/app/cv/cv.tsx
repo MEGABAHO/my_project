@@ -8,6 +8,7 @@ import Name from "./cv-components/Name";
 import Profil from "./cv-components/Profil";
 import Competences from "./cv-components/Competences";
 import Contacts from "./cv-components/Contacts";
+import Langues from "./cv-components/Langues";
 import Hobbies from "./cv-components/Hobbies";
 
 
@@ -24,14 +25,7 @@ export default function Cv() {
             <div className="sidebar">
                 <Competences />
                 <Contacts />
-                <fieldset className={"langues h-fit w-full text-xl"}>
-                    <legend className={"text-center"}>Languages</legend>
-                    <ul>
-                        <p>English - good level</p>
-                        <p>Russian - native</p>
-                        <p>French - fluent</p>
-                    </ul>
-                </fieldset>
+                <Langues />
                 <Hobbies />
             </div>
 
