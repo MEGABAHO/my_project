@@ -29,7 +29,8 @@
         width: 100%;
     }
     #print-zone {
-        height: 1300px;
+        height: auto !important;
+        max-height: 1100px;
     }
     .card-back {
         display: none;
@@ -72,6 +73,71 @@
     .contacts-border,
     .competences {
         margin-bottom: auto !important;
+    }
+    
+    .langues {
+        box-shadow: 0 0 20px #2d7caa !important;
+        padding: 10px !important;
+    }
+    
+    .langues-list {
+        gap: 8px !important;
+    }
+    
+    .langue-item {
+        padding: 6px 8px !important;
+    }
+    
+    .flag-icon {
+        font-size: 24px !important;
+    }
+    
+    .langue-name {
+        font-size: 14px !important;
+    }
+    
+    .langue-level {
+        font-size: 11px !important;
+    }
+    
+    .page {
+        transform: scale(0.90);
+        transform-origin: top center;
+        margin: 0 !important;
+    }
+    
+    .header-block {
+        padding: 10px !important;
+    }
+    
+    .experiences {
+        padding: 5px 10px !important;
+    }
+    
+    .footer-block {
+        padding: 5px 10px !important;
+    }
+    
+    .sidebar {
+        padding: 0 10px !important;
+    }
+    
+    .item {
+        height: 8rem !important;
+        margin: 8px !important;
+    }
+    
+    .profil {
+        margin: 15px !important;
+    }
+    
+    .hobbies ul {
+        padding: 5px !important;
+        margin: 5px 0 !important;
+    }
+    
+    .hobbies li {
+        line-height: 1.2 !important;
     }
 }
 
@@ -395,16 +461,11 @@ ul {
     align-items: center;
     gap: 12px;
     padding: 8px 12px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 12px;
     transition: all 0.2s ease;
-    border: 1px solid rgba(45, 124, 170, 0.3);
 }
 
 .langue-item:hover {
-    background: rgba(255, 255, 255, 0.3);
     transform: translateX(5px);
-    border-color: #2d7caa;
 }
 
 .flag-icon {
