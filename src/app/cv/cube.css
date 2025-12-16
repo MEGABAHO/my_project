@@ -92,7 +92,7 @@
     height: 100%;
 }
 
-.cube:hover {
+.scene:hover .cube {
     animation-play-state: running;
 }
 
