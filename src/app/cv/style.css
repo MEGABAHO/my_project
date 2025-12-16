@@ -256,19 +256,20 @@ body {
 .contacts {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
     font-style: normal;
 }
 
 .contact-item {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: 10px;
-    padding: 8px 10px;
+    padding: 5px 10px;
     border-radius: 10px;
     transition: all 0.3s ease;
     background: rgba(255, 255, 255, 0.5);
     border: 1px solid transparent;
+    overflow: visible;
 }
 
 .contact-item:hover {
@@ -282,13 +283,14 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 32px;
-    height: 32px;
-    min-width: 32px;
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
     background: linear-gradient(135deg, #4e2979, #2d7caa);
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(78, 41, 121, 0.3);
     transition: all 0.3s ease;
+    overflow: visible;
 }
 
 .contact-item:hover .contact-icon-wrapper {
@@ -297,8 +299,8 @@ body {
 }
 
 .contact-icon {
-    width: 18px;
-    height: 18px;
+    width: 24px;
+    height: 24px;
     color: white;
 }
 
