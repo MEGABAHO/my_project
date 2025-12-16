@@ -22,30 +22,26 @@ export default function Cv() {
 
         <div className="page w-[1000px]" id={"print-zone"}>
             <div className="header-block">
-                <Cube />
-                <Name />
-                <Profil />
+                <Cube/>
+                <Name/>
+                <Profil/>
             </div>
 
             <div className="sidebar">
-                <Competences />
-                <Contacts />
-                <Langues />
-                <Hobbies />
+                <Competences/>
+                <Contacts/>
+                <Langues/>
+                <Hobbies/>
             </div>
-
 
             <div className="experiences overflow-hidden">
                 <h3>Expérience professionnelle</h3>
-                <ExperienceCard1 />
-                <ExperienceCard2 />
-                <ExperienceCard3 />
-                <ExperienceCard4 />
-
+                <ExperienceCard1/>
+                <ExperienceCard2/>
+                <ExperienceCard3/>
+                <ExperienceCard4/>
             </div>
-
-            <FooterBlock />
-
+            <FooterBlock/>
         </div>
 
     )
