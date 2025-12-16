@@ -93,11 +93,12 @@
 
 /* animation cube */
 .cube {
-    animation: none;
+    animation: cube 5s infinite alternate ease-in-out;
+    animation-play-state: paused;
 }
 
 .cube:hover {
-    animation: cube 5s infinite linear;
+    animation-play-state: running;
 }
 
 @keyframes cube {
