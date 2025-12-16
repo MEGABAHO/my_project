@@ -1,6 +1,5 @@
 "use client"
 import React from 'react'
-import Link from "next/link";
 
 export default function LinkPrint() {
 
@@ -23,6 +22,8 @@ export default function LinkPrint() {
 
 
     return (
-        <Link className={"text-xl"} href={""} onClick={handlePrint}>Print</Link>
+        <button className="contact-button" onClick={handlePrint}>
+            <span className="contact-button-text">Print</span>
+        </button>
     )
 }
