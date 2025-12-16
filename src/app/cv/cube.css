@@ -25,6 +25,7 @@
 
     opacity: 0.8;
     position: absolute;
+    overflow: hidden;
 }
 
 .front {
@@ -111,4 +112,19 @@
     100% {
         transform: rotateX(-270deg) rotateY(360deg);
     }
+}
+
+/* Cube image styles */
+.cube-image {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.cube-image-principle {
+    /* Principle photo styling */
+}
+
+.cube-image-chef {
+    object-position: center 35%;
 }
