@@ -15,19 +15,19 @@ export default function Cv() {
                 <div className="scene">
                     <div className="cube">
                         <div className=" cube-part front overflow-hidden">
-                            <img src="/IMG_3649.JPG" alt="principle photo" className="photo object-cover h-full pointer-events-none"/>
+                            <img src="/IMG_3649.JPG" alt="principle photo" className="photo object-cover w-full h-full pointer-events-none"/>
                         </div>
                         <div className="cube-part back overflow-hidden">
                             <img src="/cuisinier.jpg" alt="cuisinier photo" className="photo object-cover w-full h-full pointer-events-none" style={{objectPosition: 'center 35%'}}/>
                         </div>
                         <div className="cube-part left overflow-hidden">
-                            <img src="/IMG_3649.JPG" alt="principle photo" className="photo object-cover h-full pointer-events-none"/>
+                            <img src="/IMG_3649.JPG" alt="principle photo" className="photo object-cover w-full h-full pointer-events-none"/>
                         </div>
                         <div className="cube-part right overflow-hidden">
                             <img src="/cuisinier.jpg" alt="cuisinier photo" className="photo object-cover w-full h-full pointer-events-none" style={{objectPosition: 'center 35%'}}/>
                         </div>
                         <div className="cube-part bottom overflow-hidden">
-                            <img src="/IMG_3649.JPG" alt="principle photo" className="photo object-cover h-full pointer-events-none"/>
+                            <img src="/IMG_3649.JPG" alt="principle photo" className="photo object-cover w-full h-full pointer-events-none"/>
                         </div>
                         <div className="cube-part top overflow-hidden">
                             <img src="/cuisinier.jpg" alt="cuisinier photo" className="photo object-cover w-full h-full pointer-events-none" style={{objectPosition: 'center 35%'}}/>
