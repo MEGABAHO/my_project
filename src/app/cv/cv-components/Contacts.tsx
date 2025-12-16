@@ -1,40 +1,71 @@
-import {EnvelopeOpenIcon, LinkedInLogoIcon, BellIcon, DownloadIcon, CopyIcon} from '@radix-ui/react-icons';
+import {EnvelopeOpenIcon, LinkedInLogoIcon, MobileIcon, DownloadIcon, CopyIcon} from '@radix-ui/react-icons';
 import LinkPrint from "@/components/link-print";
 
 export default function Contacts() {
     return (
         <fieldset className="contacts-border">
-            <legend>Contacts</legend>
+            <legend className="contacts-legend">Contacts</legend>
             <address className="contacts">
-                <div className={"flex  items-center gap-2"}>
-                    <EnvelopeOpenIcon/>
-                    <a
-                        className="link-contacts email"
-                        href="mailto:topychkanov@hotmail.fr"
-                    >Topychkanov@hotmail.fr</a>
+                <div className="contact-item">
+                    <div className="contact-icon-wrapper">
+                        <EnvelopeOpenIcon className="contact-icon"/>
+                    </div>
+                    <div className="contact-content">
+                        <span className="contact-label">Email</span>
+                        <a
+                            className="contact-link"
+                            href="mailto:topychkanov@hotmail.fr"
+                        >topychkanov@hotmail.fr</a>
+                    </div>
                 </div>
-                <div className={"LinkedIn flex  items-center gap-2"}>
-                    <LinkedInLogoIcon/>
-                    <a className={"link-contacts text-xl"}
-                       href="https://www.linkedin.com/in/ivan-topychkanov/"
-                       target="_blank"
-                    >LinkedIn</a>
+                
+                <div className="contact-item LinkedIn">
+                    <div className="contact-icon-wrapper">
+                        <LinkedInLogoIcon className="contact-icon"/>
+                    </div>
+                    <div className="contact-content">
+                        <span className="contact-label">LinkedIn</span>
+                        <a 
+                            className="contact-link"
+                            href="https://www.linkedin.com/in/ivan-topychkanov/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >ivan-topychkanov</a>
+                    </div>
                 </div>
-                <div className="flex bg-zinc-200 rounded-3xl items-center gap-2">
-                    <BellIcon/>
-                    <a className="link-contacts" href="tel:+33638687255"
-                    >(+33) 06 38 68 72 55</a>
+                
+                <div className="contact-item">
+                    <div className="contact-icon-wrapper">
+                        <MobileIcon className="contact-icon"/>
+                    </div>
+                    <div className="contact-content">
+                        <span className="contact-label">Phone</span>
+                        <a className="contact-link" href="tel:+33638687255">
+                            +33 6 38 68 72 55
+                        </a>
+                    </div>
                 </div>
-                <div className="Download flex  items-center gap-2">
-                    <DownloadIcon/>
+                
+                <div className="contact-item Download contact-action">
+                    <div className="contact-icon-wrapper">
+                        <DownloadIcon className="contact-icon"/>
+                    </div>
                     <button 
-                        className="link-contacts text-xl cursor-pointer" 
+                        className="contact-button" 
                         onClick={() => window.print()}
-                    >Download CV (Print to PDF)</button>
+                    >
+                        <span className="contact-button-text">Download CV</span>
+                        <span className="contact-button-subtext">Print to PDF</span>
+                    </button>
                 </div>
-                <div className="Print flex  items-center gap-2">
-                    <CopyIcon/>
-                    <LinkPrint/>
+                
+                <div className="contact-item Print contact-action">
+                    <div className="contact-icon-wrapper">
+                        <CopyIcon className="contact-icon"/>
+                    </div>
+                    <div className="contact-print-wrapper">
+                        <LinkPrint/>
+                    </div>
                 </div>
             </address>
         </fieldset>
