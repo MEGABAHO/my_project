@@ -102,29 +102,29 @@ export default function Cv() {
                 </fieldset>
                 <fieldset className={"langues h-fit w-full"}>
                     <legend className={"text-center font-semibold"}>Languages</legend>
-                    <div className="langues-list">
-                        <div className="langue-item">
-                            <span className="flag-icon">🇬🇧</span>
+                    <ul className="langues-list">
+                        <li className="langue-item">
+                            <span className="flag-icon" role="img" aria-label="United Kingdom flag">🇬🇧</span>
                             <div className="langue-info">
                                 <span className="langue-name">English</span>
                                 <span className="langue-level">Good level</span>
                             </div>
-                        </div>
-                        <div className="langue-item">
-                            <span className="flag-icon">🇷🇺</span>
+                        </li>
+                        <li className="langue-item">
+                            <span className="flag-icon" role="img" aria-label="Russian flag">🇷🇺</span>
                             <div className="langue-info">
                                 <span className="langue-name">Russian</span>
                                 <span className="langue-level">Native</span>
                             </div>
-                        </div>
-                        <div className="langue-item">
-                            <span className="flag-icon">🇫🇷</span>
+                        </li>
+                        <li className="langue-item">
+                            <span className="flag-icon" role="img" aria-label="French flag">🇫🇷</span>
                             <div className="langue-info">
                                 <span className="langue-name">French</span>
                                 <span className="langue-level">Fluent</span>
                             </div>
-                        </div>
-                    </div>
+                        </li>
+                    </ul>
                 </fieldset>
                 <div className="hobbies">
                     <h4>Hobbies</h4>
