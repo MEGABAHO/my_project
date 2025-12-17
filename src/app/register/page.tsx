@@ -7,7 +7,12 @@ const registrationSchema = z.object({
     email: z.string().email("Invalid email address"),
     firstName: z.string().min(2, "First name must be at least 2 characters"),
     lastName: z.string().min(2, "Last name must be at least 2 characters"),
+    password: z.string().min(8, "Password must be at least 8 characters"),
+    confirmPassword: z.string(),
     captcha: z.string().length(6, "CAPTCHA must be 6 characters"),
+}).refine(data => data.password === data.confirmPassword, {
+    message: "Passwords must match",
+    path: ["confirmPassword"]
 });
 
 // CAPTCHA configuration constants
@@ -39,6 +44,8 @@ export default function RegisterPage() {
     const [email, setEmail] = useState("");
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
     const [captchaInput, setCaptchaInput] = useState("");
     const [captchaText, setCaptchaText] = useState("");
     const [captchaImage, setCaptchaImage] = useState("");
@@ -116,6 +123,8 @@ export default function RegisterPage() {
             email,
             firstName,
             lastName,
+            password,
+            confirmPassword,
             captcha: captchaInput,
         });
 
@@ -126,23 +135,51 @@ export default function RegisterPage() {
             return;
         }
 
-        // TO DO: submit to server
-        // For now, just simulate API call
+        // Submit to server
         try {
-            await new Promise((resolve) => setTimeout(resolve, 1500));
+            const response = await fetch('/api/auth/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email,
+                    firstName,
+                    lastName,
+                    password,
+                }),
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                if (data.details) {
+                    // Validation errors from server
+                    const errorMessages = data.details.map((err: { message: string }) => err.message);
+                    setErrors(errorMessages);
+                } else {
+                    setErrors([data.error || 'Registration failed']);
+                }
+                setSubmitting(false);
+                return;
+            }
+
             setSuccessMessage("Registration successful! Redirecting to home page...");
             
             // Clear form
             setEmail("");
             setFirstName("");
             setLastName("");
+            setPassword("");
+            setConfirmPassword("");
             setCaptchaInput("");
             
             // Redirect after delay
             setTimeout(() => {
                 router.push("/");
             }, REDIRECT_DELAY_MS);
-        } catch {
+        } catch (error) {
+            console.error('Registration error:', error);
             setErrors(["An error occurred. Please try again."]);
             regenerateCaptcha();
         } finally {
@@ -221,6 +258,38 @@ export default function RegisterPage() {
                                 type="text"
                                 required={true}
                                 placeholder="Enter your last name"
+                                className="w-full px-4 py-3 rounded-xl border-2 border-gray-300 focus:border-green-500 focus:outline-none transition-all text-gray-800 bg-white shadow-sm"
+                            />
+                        </div>
+
+                        <div>
+                            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+                                Password
+                            </label>
+                            <input
+                                id="password"
+                                onChange={(e) => setPassword(e.target.value)}
+                                value={password}
+                                type="password"
+                                required={true}
+                                minLength={8}
+                                placeholder="Enter your password"
+                                className="w-full px-4 py-3 rounded-xl border-2 border-gray-300 focus:border-green-500 focus:outline-none transition-all text-gray-800 bg-white shadow-sm"
+                            />
+                        </div>
+
+                        <div>
+                            <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-1">
+                                Confirm Password
+                            </label>
+                            <input
+                                id="confirmPassword"
+                                onChange={(e) => setConfirmPassword(e.target.value)}
+                                value={confirmPassword}
+                                type="password"
+                                required={true}
+                                minLength={8}
+                                placeholder="Confirm your password"
                                 className="w-full px-4 py-3 rounded-xl border-2 border-gray-300 focus:border-green-500 focus:outline-none transition-all text-gray-800 bg-white shadow-sm"
                             />
                         </div>
