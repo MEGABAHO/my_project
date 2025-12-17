@@ -3,11 +3,14 @@ import {FormEvent, useState, useEffect, useCallback} from "react";
 import {z} from "zod";
 import {useRouter} from "next/navigation";
 
+// Validation constants
+const PASSWORD_MIN_LENGTH = 8;
+
 const registrationSchema = z.object({
     email: z.string().email("Invalid email address"),
     firstName: z.string().min(2, "First name must be at least 2 characters"),
     lastName: z.string().min(2, "Last name must be at least 2 characters"),
-    password: z.string().min(8, "Password must be at least 8 characters"),
+    password: z.string().min(PASSWORD_MIN_LENGTH, `Password must be at least ${PASSWORD_MIN_LENGTH} characters`),
     confirmPassword: z.string(),
     captcha: z.string().length(6, "CAPTCHA must be 6 characters"),
 }).refine(data => data.password === data.confirmPassword, {
@@ -272,7 +275,7 @@ export default function RegisterPage() {
                                 value={password}
                                 type="password"
                                 required={true}
-                                minLength={8}
+                                minLength={PASSWORD_MIN_LENGTH}
                                 placeholder="Enter your password"
                                 className="w-full px-4 py-3 rounded-xl border-2 border-gray-300 focus:border-green-500 focus:outline-none transition-all text-gray-800 bg-white shadow-sm"
                             />
@@ -288,7 +291,7 @@ export default function RegisterPage() {
                                 value={confirmPassword}
                                 type="password"
                                 required={true}
-                                minLength={8}
+                                minLength={PASSWORD_MIN_LENGTH}
                                 placeholder="Confirm your password"
                                 className="w-full px-4 py-3 rounded-xl border-2 border-gray-300 focus:border-green-500 focus:outline-none transition-all text-gray-800 bg-white shadow-sm"
                             />

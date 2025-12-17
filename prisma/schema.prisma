@@ -15,7 +15,7 @@ model User {
   email     String   @unique
   firstName String
   lastName  String
-  password  String   // In production, this should be hashed!
+  password  String   // Stored as bcrypt hash via API route
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
