@@ -197,11 +197,41 @@ If not running, start it:
 npm run docker:up
 ```
 
+### Error: "User was denied access on the database" (P3014)
+
+This error occurs when the MySQL user doesn't have permission to create shadow databases needed for Prisma migrations.
+
+**Solution:**
+The docker-compose.yml now includes an initialization script that grants the necessary permissions. If you're getting this error:
+
+1. Stop and remove the existing MySQL container and volume:
+```bash
+npm run docker:down
+docker volume rm my_project_mysql_data
+```
+
+2. Start fresh (this will run the init script):
+```bash
+npm run docker:up
+```
+
+3. Wait 15-20 seconds for MySQL to fully initialize, then run migrations:
+```bash
+npm run prisma:generate
+npm run prisma:migrate
+```
+
+**Alternative:** Use root user in DATABASE_URL (not recommended for production):
+```
+DATABASE_URL="mysql://root:rootpassword@localhost:3306/my_project_db"
+```
+
 ### Reset Everything
 ```bash
 npm run docker:down
 docker volume rm my_project_mysql_data
 npm run docker:up
+# Wait 15-20 seconds for MySQL to initialize
 npm run prisma:migrate
 ```
 

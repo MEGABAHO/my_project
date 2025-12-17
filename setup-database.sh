@@ -25,8 +25,9 @@ echo "🐳 Starting Docker MySQL container..."
 npm run docker:up
 
 echo ""
-echo "⏳ Waiting for MySQL to be ready (10 seconds)..."
-sleep 10
+echo "⏳ Waiting for MySQL to be ready and initialize (20 seconds)..."
+echo "   This includes granting necessary permissions for Prisma migrations..."
+sleep 20
 
 # Step 3: Generate Prisma Client
 echo ""
