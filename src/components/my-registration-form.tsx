@@ -1,16 +1,15 @@
 "use client"
 import {FormEvent, useState, forwardRef} from "react";
-// import {z} from "zod"
+import {z} from "zod"
 
-// const signUpSchema= z.object({
-//     email: z.string().email(),
-//     password: z.string().min(10, "Password must be at least 10 characters"),
-//     confirmPassword: z.string(),
-// }).refine(data => data.password === data.confirmPassword, {
-//     message: "Passwords must match",
-//     path: ["confirmPassword"]
-// })
-// type SignUpSchema = z.infer<typeof signUpSchema>;
+const signUpSchema = z.object({
+    email: z.string().email("Invalid email address"),
+    password: z.string().min(10, "Password must be at least 10 characters"),
+    confirmPassword: z.string(),
+}).refine(data => data.password === data.confirmPassword, {
+    message: "Passwords must match",
+    path: ["confirmPassword"]
+})
 interface Props {
     children?: React.ReactNode;
     className?: string;
@@ -22,32 +21,58 @@ const MyRegistrationForm = forwardRef<HTMLDivElement, Props>((props, ref)=> {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [isSubmitting, setSubmitting] = useState(false)
     const [errors, setErrors] = useState<string[]>([])
+    const [successMessage, setSuccessMessage] = useState<string>("")
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         setSubmitting(true)
-        if (password !== confirmPassword) {
-            setErrors(["password is not the same"])
-            setSubmitting(false);
-            return;
+        setErrors([])
+        setSuccessMessage("")
+        
+        // Validate form data with Zod
+        const result = signUpSchema.safeParse({
+            email,
+            password,
+            confirmPassword
+        })
+        
+        if (!result.success) {
+            const errorMessages = result.error.errors.map(err => err.message)
+            setErrors(errorMessages)
+            setSubmitting(false)
+            return
         }
+        
         // TO DO: submit to server
-        //...
-        await new Promise((resolve) => setTimeout(resolve, 1000))
-        setEmail("");
-        setPassword("");
-        setConfirmPassword("")
-        setSubmitting(false)
+        // For now, just simulate API call
+        try {
+            await new Promise((resolve) => setTimeout(resolve, 1000))
+            // Success - clear form
+            setEmail("");
+            setPassword("");
+            setConfirmPassword("")
+            setSuccessMessage("Registration successful!")
+            setTimeout(() => setSuccessMessage(""), 3000)
+        } catch {
+            setErrors(["An error occurred. Please try again."])
+        } finally {
+            setSubmitting(false)
+        }
     }
 
     return (
         <div ref={ref} className={props.className || "registration-form"}>
             <form onSubmit={handleSubmit} className={"reg-form flex flex-row gap-y-2 gap-x-3 pt-1"}>
+                {successMessage && (
+                    <div className="bg-green-100 text-green-700 px-4 py-2 rounded">
+                        {successMessage}
+                    </div>
+                )}
                 {
                     errors.length > 0 && (
                         <ul>
-                            {errors.map((error) => (
-                                <li key={error} className={"bg-red-100 text-red-500 px-4 py-2 rounded"}>
+                            {errors.map((error, index) => (
+                                <li key={index} className="bg-red-100 text-red-500 px-4 py-2 rounded">
                                     {error}
                                 </li>
                             ))
