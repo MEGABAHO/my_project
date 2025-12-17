@@ -33,7 +33,8 @@
 /*}*/
 .competences-acquises,
 .contacts-border,
-.hobbies {
+.hobbies,
+.langues-modern{
     animation-name: animation-sidebar;
     animation-duration: 0.8s;
     animation-timing-function: linear;
