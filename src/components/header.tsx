@@ -1,6 +1,6 @@
 "use client"
 import Navigation from "@/components/navigation";
-import MyRegistrationForm from "@/components/my-registration-form";
+import LoginForm from "@/components/login-form";
 import {useEffect, useRef, useState} from "react";
 
 
@@ -38,7 +38,7 @@ export default function Header() {
     return (
         <header
             className={`${isScrolled ? "fixed-header" : ""} header-media grid grid-cols justify-items-center w-full border-b border-white/20`}>
-            {!isScrolled && <MyRegistrationForm ref={formRef}/>}
+            {!isScrolled && <LoginForm ref={formRef}/>}
             <Navigation/>
             <style jsx>{`
                 .header-media {
