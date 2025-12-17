@@ -1,13 +1,7 @@
 "use client"
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Link from "next/link";
-
-interface User {
-    id: string;
-    email: string;
-    firstName: string;
-    lastName: string;
-}
+import { useSession, signOut } from "next-auth/react";
 
 const buttonsRoute = [
     {
@@ -21,32 +15,11 @@ const buttonsRoute = [
 ]
 
 export default function Navigation() {
-    const [user, setUser] = useState<User | null>(null);
-
-    useEffect(() => {
-        checkAuthStatus();
-    }, []);
-
-    const checkAuthStatus = async () => {
-        try {
-            const response = await fetch('/api/auth/me');
-            if (response.ok) {
-                const data = await response.json();
-                setUser(data.user);
-            }
-        } catch (error) {
-            // User not authenticated, ignore
-        }
-    };
+    const { data: session } = useSession();
+    const user = session?.user as any;
 
     const handleLogout = async () => {
-        try {
-            await fetch('/api/auth/logout', { method: 'POST' });
-            setUser(null);
-            window.location.reload(); // Refresh to update header
-        } catch (error) {
-            console.error('Logout error:', error);
-        }
+        await signOut({ redirect: false });
     };
 
     return (

@@ -2,51 +2,20 @@
 import Navigation from "@/components/navigation";
 import LoginForm from "@/components/login-form";
 import {useEffect, useRef, useState} from "react";
-
-interface User {
-    id: string;
-    email: string;
-    firstName: string;
-    lastName: string;
-}
+import { useSession, signOut } from "next-auth/react";
 
 export default function Header() {
     const [isScrolled, setIsScrolled] = useState(false);
-    const [user, setUser] = useState<User | null>(null);
-    const [isLoading, setIsLoading] = useState(true);
     const formRef = useRef<HTMLDivElement | null>(null);
     const [formHeight, setFormHeight] = useState(0);
-
-    // Check authentication status on mount
-    useEffect(() => {
-        checkAuthStatus();
-    }, []);
-
-    const checkAuthStatus = async () => {
-        try {
-            const response = await fetch('/api/auth/me');
-            if (response.ok) {
-                const data = await response.json();
-                setUser(data.user);
-            }
-        } catch (error) {
-            console.error('Auth check error:', error);
-        } finally {
-            setIsLoading(false);
-        }
-    };
+    const { data: session, status } = useSession();
 
     const handleLoginSuccess = () => {
-        checkAuthStatus();
+        // Session will be updated automatically by NextAuth
     };
 
     const handleLogout = async () => {
-        try {
-            await fetch('/api/auth/logout', { method: 'POST' });
-            setUser(null);
-        } catch (error) {
-            console.error('Logout error:', error);
-        }
+        await signOut({ redirect: false });
     };
 
     useEffect(() => {
@@ -70,6 +39,9 @@ export default function Header() {
             window.removeEventListener("scroll", handleScroll);
         };
     }, [formHeight]);
+
+    const user = session?.user as any;
+    const isLoading = status === "loading";
 
     return (
         <header

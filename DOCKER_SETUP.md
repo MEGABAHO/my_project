@@ -1,6 +1,6 @@
 # Docker & MySQL Setup Guide
 
-This project uses Docker to run a MySQL database for storing registered user accounts.
+This project uses Docker to run a MySQL database for storing registered user accounts. The application uses **NextAuth.js** for authentication with a Prisma adapter for database sessions.
 
 ## Prerequisites
 

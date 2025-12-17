@@ -1,6 +1,7 @@
 "use client"
 import {FormEvent, useState, forwardRef} from "react";
 import {useRouter} from "next/navigation";
+import { signIn } from "next-auth/react";
 
 interface Props {
     children?: React.ReactNode;
@@ -27,20 +28,16 @@ const LoginForm = forwardRef<HTMLDivElement, Props>((props, ref) => {
             return;
         }
 
-        // Submit to server
+        // Submit to NextAuth
         try {
-            const response = await fetch('/api/auth/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ login, password }),
+            const result = await signIn("credentials", {
+                email: login,
+                password: password,
+                redirect: false,
             });
 
-            const data = await response.json();
-
-            if (!response.ok) {
-                setError(data.error || 'Login failed');
+            if (result?.error) {
+                setError("Invalid credentials");
                 setSubmitting(false);
                 return;
             }
@@ -52,6 +49,9 @@ const LoginForm = forwardRef<HTMLDivElement, Props>((props, ref) => {
             if (props.onLoginSuccess) {
                 props.onLoginSuccess();
             }
+            
+            // Refresh to update session
+            router.refresh();
         } catch (error) {
             console.error('Login error:', error);
             setError("An error occurred. Please try again.");
