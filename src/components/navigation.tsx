@@ -19,7 +19,7 @@ export default function Navigation() {
     const user = session?.user as any;
 
     const handleLogout = async () => {
-        await signOut({ redirect: false });
+        await signOut({ callbackUrl: "/" });
     };
 
     return (
