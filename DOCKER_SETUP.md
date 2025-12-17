@@ -9,7 +9,41 @@ This project uses Docker to run a MySQL database for storing registered user acc
 
 ## Quick Start
 
-### 1. Start the MySQL Database
+### Automated Setup (Recommended)
+
+Run the automated setup script:
+
+```bash
+chmod +x setup-database.sh
+./setup-database.sh
+```
+
+This script will:
+1. Create `.env` file from `.env.example` if it doesn't exist
+2. Start the MySQL Docker container
+3. Generate Prisma Client
+4. Run database migrations
+
+### Manual Setup
+
+If you prefer to set up manually, follow these steps:
+
+#### 1. Configure Environment Variables
+
+Create a `.env` file in the project root (copy from `.env.example`):
+
+```bash
+cp .env.example .env
+```
+
+**Important:** The `.env` file must contain:
+```
+DATABASE_URL="mysql://myuser:mypassword@localhost:3306/my_project_db"
+```
+
+The URL format is: `mysql://USER:PASSWORD@HOST:PORT/DATABASE_NAME`
+
+#### 2. Start the MySQL Database
 
 ```bash
 # Start MySQL in Docker
@@ -24,20 +58,9 @@ This will:
 - Create a database named `my_project_db`
 - Expose MySQL on port 3306
 
-### 2. Configure Environment Variables
+Wait 10-15 seconds for MySQL to be fully ready before proceeding.
 
-Create a `.env` file in the project root (copy from `.env.example`):
-
-```bash
-cp .env.example .env
-```
-
-The default configuration:
-```
-DATABASE_URL="mysql://myuser:mypassword@localhost:3306/my_project_db"
-```
-
-### 3. Run Prisma Migrations
+#### 3. Run Prisma Migrations
 
 Generate the Prisma Client and create database tables:
 
@@ -51,7 +74,7 @@ npm run prisma:migrate
 
 When prompted for a migration name, you can use: `init`
 
-### 4. Start the Development Server
+#### 4. Start the Development Server
 
 ```bash
 npm install --legacy-peer-deps
@@ -117,6 +140,36 @@ Database data is stored in a Docker volume named `mysql_data`, so your data pers
 
 ## Troubleshooting
 
+### Error: "the URL must start with the protocol `mysql://`"
+
+This error occurs when the `.env` file is missing or has an incorrect DATABASE_URL format.
+
+**Solution:**
+1. Check if `.env` file exists in the project root:
+```bash
+ls -la .env
+```
+
+2. If it doesn't exist, create it:
+```bash
+cp .env.example .env
+```
+
+3. Verify the content of `.env`:
+```bash
+cat .env
+```
+
+It should contain:
+```
+DATABASE_URL="mysql://myuser:mypassword@localhost:3306/my_project_db"
+```
+
+**Important:** The DATABASE_URL must:
+- Start with `mysql://` protocol
+- Include username and password
+- Follow the format: `mysql://USER:PASSWORD@HOST:PORT/DATABASE_NAME`
+
 ### Port 3306 Already in Use
 If you have MySQL already running locally:
 ```bash
@@ -126,6 +179,9 @@ brew services stop mysql
 # Or change the port in docker-compose.yml
 ports:
   - "3307:3306"  # Change host port to 3307
+
+# Then update DATABASE_URL in .env:
+DATABASE_URL="mysql://myuser:mypassword@localhost:3307/my_project_db"
 ```
 
 ### Connection Issues
@@ -135,6 +191,11 @@ docker ps
 ```
 
 You should see `my_project_mysql` in the list.
+
+If not running, start it:
+```bash
+npm run docker:up
+```
 
 ### Reset Everything
 ```bash
