@@ -29,11 +29,9 @@ const REDIRECT_DELAY_MS = 2000;
 // Function to generate random CAPTCHA text
 const generateCaptcha = (): string => {
     const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    let captcha = "";
-    for (let i = 0; i < CAPTCHA_CONFIG.LENGTH; i++) {
-        captcha += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-    return captcha;
+    return Array.from({ length: CAPTCHA_CONFIG.LENGTH }, () => 
+        chars.charAt(Math.floor(Math.random() * chars.length))
+    ).join("");
 };
 
 export default function RegisterPage() {
@@ -254,7 +252,7 @@ export default function RegisterPage() {
                                     value={captchaInput}
                                     type="text"
                                     required={true}
-                                    maxLength={6}
+                                    maxLength={CAPTCHA_CONFIG.LENGTH}
                                     placeholder="Enter the 6 characters above"
                                     className="w-full px-4 py-3 rounded-xl border-2 border-gray-300 focus:border-green-500 focus:outline-none transition-all text-gray-800 bg-white shadow-sm"
                                 />
