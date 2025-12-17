@@ -1,5 +1,5 @@
 "use client"
-import {FormEvent, useState, useEffect} from "react";
+import {FormEvent, useState, useEffect, useCallback} from "react";
 import {z} from "zod";
 import {useRouter} from "next/navigation";
 
@@ -10,11 +10,27 @@ const registrationSchema = z.object({
     captcha: z.string().length(6, "CAPTCHA must be 6 characters"),
 });
 
+// CAPTCHA configuration constants
+const CAPTCHA_CONFIG = {
+    LENGTH: 6,
+    WIDTH: 200,
+    HEIGHT: 60,
+    FONT: "bold 30px Arial",
+    NOISE_LINES: 5,
+    CHAR_SPACING: 30,
+    CHAR_X_OFFSET: 20,
+    CHAR_Y_BASE: 30,
+    CHAR_Y_VARIATION: 10,
+    CHAR_ROTATION_MAX: 0.3,
+} as const;
+
+const REDIRECT_DELAY_MS = 2000;
+
 // Function to generate random CAPTCHA text
 const generateCaptcha = (): string => {
     const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     let captcha = "";
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < CAPTCHA_CONFIG.LENGTH; i++) {
         captcha += chars.charAt(Math.floor(Math.random() * chars.length));
     }
     return captcha;
@@ -32,19 +48,14 @@ export default function RegisterPage() {
     const [errors, setErrors] = useState<string[]>([]);
     const [successMessage, setSuccessMessage] = useState<string>("");
 
-    // Generate CAPTCHA on component mount
-    useEffect(() => {
-        regenerateCaptcha();
-    }, []);
-
-    const regenerateCaptcha = () => {
+    const regenerateCaptcha = useCallback(() => {
         const newCaptcha = generateCaptcha();
         setCaptchaText(newCaptcha);
         
         // Create canvas and draw CAPTCHA
         const canvas = document.createElement("canvas");
-        canvas.width = 200;
-        canvas.height = 60;
+        canvas.width = CAPTCHA_CONFIG.WIDTH;
+        canvas.height = CAPTCHA_CONFIG.HEIGHT;
         const ctx = canvas.getContext("2d");
         
         if (ctx) {
@@ -53,7 +64,7 @@ export default function RegisterPage() {
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             
             // Add noise lines
-            for (let i = 0; i < 5; i++) {
+            for (let i = 0; i < CAPTCHA_CONFIG.NOISE_LINES; i++) {
                 ctx.strokeStyle = `rgba(${Math.random() * 255},${Math.random() * 255},${Math.random() * 255},0.3)`;
                 ctx.beginPath();
                 ctx.moveTo(Math.random() * canvas.width, Math.random() * canvas.height);
@@ -62,14 +73,14 @@ export default function RegisterPage() {
             }
             
             // Draw CAPTCHA text
-            ctx.font = "bold 30px Arial";
+            ctx.font = CAPTCHA_CONFIG.FONT;
             ctx.fillStyle = "#333";
             ctx.textBaseline = "middle";
             
             for (let i = 0; i < newCaptcha.length; i++) {
-                const x = 20 + i * 30;
-                const y = 30 + (Math.random() - 0.5) * 10;
-                const angle = (Math.random() - 0.5) * 0.3;
+                const x = CAPTCHA_CONFIG.CHAR_X_OFFSET + i * CAPTCHA_CONFIG.CHAR_SPACING;
+                const y = CAPTCHA_CONFIG.CHAR_Y_BASE + (Math.random() - 0.5) * CAPTCHA_CONFIG.CHAR_Y_VARIATION;
+                const angle = (Math.random() - 0.5) * CAPTCHA_CONFIG.CHAR_ROTATION_MAX;
                 
                 ctx.save();
                 ctx.translate(x, y);
@@ -80,7 +91,12 @@ export default function RegisterPage() {
             
             setCaptchaImage(canvas.toDataURL());
         }
-    };
+    }, []);
+
+    // Generate CAPTCHA on component mount
+    useEffect(() => {
+        regenerateCaptcha();
+    }, [regenerateCaptcha]);
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -124,10 +140,10 @@ export default function RegisterPage() {
             setLastName("");
             setCaptchaInput("");
             
-            // Redirect after 2 seconds
+            // Redirect after delay
             setTimeout(() => {
                 router.push("/");
-            }, 2000);
+            }, REDIRECT_DELAY_MS);
         } catch {
             setErrors(["An error occurred. Please try again."]);
             regenerateCaptcha();

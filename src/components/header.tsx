@@ -14,7 +14,7 @@ export default function Header() {
     const [formHeight, setFormHeight] = useState(0);
 
     useEffect(() => {
-        // Рассчитываем полную высоту элемента включая margins
+        // Calculate the full height of the element including margins
         if (formRef.current) {
             const style = window.getComputedStyle(formRef.current);
             const marginTop = parseFloat(style.marginTop) || 0;
@@ -24,7 +24,7 @@ export default function Header() {
         }
 
         const handleScroll = () => {
-            // Проверяем скролл относительно высоты MyRegistrationForm
+            // Check scroll relative to the height of LoginForm
             setIsScrolled(window.scrollY > formHeight);
         };
 
