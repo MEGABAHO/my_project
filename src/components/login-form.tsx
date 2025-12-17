@@ -5,6 +5,7 @@ import {useRouter} from "next/navigation";
 interface Props {
     children?: React.ReactNode;
     className?: string;
+    onLoginSuccess?: () => void;
 }
 
 const LoginForm = forwardRef<HTMLDivElement, Props>((props, ref) => {
@@ -26,15 +27,33 @@ const LoginForm = forwardRef<HTMLDivElement, Props>((props, ref) => {
             return;
         }
 
-        // TO DO: submit to server
-        // For now, just simulate API call
+        // Submit to server
         try {
-            await new Promise((resolve) => setTimeout(resolve, 1000));
-            // Success - clear form
+            const response = await fetch('/api/auth/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ login, password }),
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                setError(data.error || 'Login failed');
+                setSubmitting(false);
+                return;
+            }
+
+            // Success - clear form and notify parent
             setLogin("");
             setPassword("");
-            alert("Login successful!");
-        } catch {
+            
+            if (props.onLoginSuccess) {
+                props.onLoginSuccess();
+            }
+        } catch (error) {
+            console.error('Login error:', error);
             setError("An error occurred. Please try again.");
         } finally {
             setSubmitting(false);
