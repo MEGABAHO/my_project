@@ -5,22 +5,7 @@
 }
 
 
-@media print {
-    * {
-        -webkit-print-color-adjust: exact !important;
-        print-color-adjust: exact !important;
-    }
-    
-    @page {
-        size: A4;
-        margin: 10mm;
-    }
-    
-    body {
-        margin: 0;
-        padding: 0;
-    }
-    
+@media print and (-webkit-min-device-pixel-ratio: 0) {
     .header-media {
         display: none;
     }
@@ -30,132 +15,63 @@
     .footer-block,
     .sidebar {
         box-shadow: none !important;
-        page-break-inside: avoid;
     }
-    
     .LinkedIn,
     .Download,
     .Print {
         display: none;
     }
-    
     .footer-media {
         display: none;
     }
-    
     .page {
-        display: grid !important;
-        grid-template-columns: 1fr 3fr !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        height: auto !important;
-        transform: scale(0.95);
-        transform-origin: top left;
+        display: block;
+        width: 100%;
     }
-    
     #print-zone {
-        height: auto !important;
+        height: 1300px;
     }
-    
     .card-back {
         display: none;
     }
-    
     .cube {
-        transform: rotateY(0deg);
+        transform: rotateY(0deg); /* Установить фронтальную сторону вперед */
     }
-    
     .cube-part {
         display: none;
     }
-    
     .front {
         display: block !important;
-        width: 180px !important;
-        height: 180px !important;
+        width: 230px !important;
+        height: 230px !important;
     }
-    
     .name-gredient {
         opacity: 0.9;
         background: none !important;
         -webkit-text-fill-color: #4e2979 !important;
         background-clip: initial !important;
     }
-    
     .logo-profil {
         opacity: 0.9;
         background: none !important;
         -webkit-text-fill-color: #4e2979 !important;
         background-clip: initial !important;
     }
-    
     .title-comp {
+
         width: 200px;
         height: 30px;
-        font-size: 13px;
+        font-size: 15px;
         font-weight: 600;
         box-shadow: 0 0 20px #2d7caa inset !important;
         border-radius: 40px 5px / 20px 10px 30px;
     }
 
     .hobbies,
-    .langues-modern,
+    .langues,
     .contacts-border,
     .competences {
-        margin-bottom: 8px !important;
-        padding: 8px !important;
-    }
-    
-    .header-block {
-        padding: 10px !important;
-    }
-    
-    .sidebar {
-        padding: 0 10px !important;
-    }
-    
-    .experiences,
-    .footer-block {
-        padding: 10px !important;
-    }
-    
-    .contact-item,
-    .language-item {
-        height: 28px !important;
-        padding: 0 5px 0 28px !important;
-    }
-    
-    .contact-icon-wrapper,
-    .language-flag {
-        width: 32px !important;
-        height: 32px !important;
-        min-width: 32px !important;
-    }
-    
-    .contacts,
-    .langues-modern ul {
-        gap: 6px !important;
-    }
-    
-    .profil {
-        width: 35rem !important;
-        height: 8rem !important;
-        margin: 15px !important;
-        font-size: 14px !important;
-    }
-    
-    .name {
-        font-size: 36px !important;
-    }
-    
-    .experiences h2,
-    .footer-block h2 {
-        font-size: 18px !important;
-        margin: 8px 0 !important;
-    }
-    
-    .card {
-        margin-bottom: 8px !important;
+        margin-bottom: auto !important;
     }
 }
 
