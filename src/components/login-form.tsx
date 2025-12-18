@@ -65,7 +65,7 @@ const LoginForm = forwardRef<HTMLDivElement, Props>((props, ref) => {
     };
 
     return (
-        <div ref={ref} className={props.className || "login-form"}>
+        <div ref={ref} className={props.className || "login-form"} style={{ transition: 'opacity 0.5s ease-out, transform 0.5s ease-out' }}>
             <form onSubmit={handleLogin} className="flex flex-row gap-3 items-center justify-center pt-2 pb-2 flex-wrap">
                 {error && (
                     <div className="w-full text-center bg-red-100 text-red-500 px-4 py-2 rounded-lg">

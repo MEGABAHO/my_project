@@ -2,6 +2,7 @@
 import {FormEvent, useState, useEffect, useCallback} from "react";
 import {z} from "zod";
 import {useRouter} from "next/navigation";
+import { useSession } from "next-auth/react";
 
 // Validation constants
 const PASSWORD_MIN_LENGTH = 8;
@@ -44,6 +45,7 @@ const generateCaptcha = (): string => {
 
 export default function RegisterPage() {
     const router = useRouter();
+    const { data: session, status } = useSession();
     const [email, setEmail] = useState("");
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -55,6 +57,13 @@ export default function RegisterPage() {
     const [isSubmitting, setSubmitting] = useState(false);
     const [errors, setErrors] = useState<string[]>([]);
     const [successMessage, setSuccessMessage] = useState<string>("");
+
+    // Redirect to homepage if user is already logged in
+    useEffect(() => {
+        if (status === "authenticated" && session) {
+            router.push("/");
+        }
+    }, [status, session, router]);
 
     const regenerateCaptcha = useCallback(() => {
         const newCaptcha = generateCaptcha();

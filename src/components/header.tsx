@@ -2,20 +2,24 @@
 import Navigation from "@/components/navigation";
 import LoginForm from "@/components/login-form";
 import {useEffect, useRef, useState} from "react";
-import { useSession, signOut } from "next-auth/react";
+import { useSession } from "next-auth/react";
 
 export default function Header() {
     const [isScrolled, setIsScrolled] = useState(false);
     const formRef = useRef<HTMLDivElement | null>(null);
     const [formHeight, setFormHeight] = useState(0);
     const { data: session, status } = useSession();
+    const [showLoginForm, setShowLoginForm] = useState(true);
+    const [showGreeting, setShowGreeting] = useState(false);
 
     const handleLoginSuccess = () => {
         // Session will be updated automatically by NextAuth
-    };
-
-    const handleLogout = async () => {
-        await signOut({ callbackUrl: "/" });
+        // Trigger fade-out animation for login form
+        setShowLoginForm(false);
+        // Wait for fade-out, then show greeting
+        setTimeout(() => {
+            setShowGreeting(true);
+        }, 500);
     };
 
     useEffect(() => {
@@ -43,23 +47,30 @@ export default function Header() {
     const user = session?.user as any;
     const isLoading = status === "loading";
 
+    // Update states when session changes
+    useEffect(() => {
+        if (user) {
+            setShowLoginForm(false);
+            setShowGreeting(true);
+        } else {
+            setShowGreeting(false);
+            setShowLoginForm(true);
+        }
+    }, [user]);
+
     return (
         <header
             className={`${isScrolled ? "fixed-header" : ""} header-media grid grid-cols justify-items-center w-full border-b border-white/20`}>
-            {!isScrolled && !user && !isLoading && (
-                <LoginForm ref={formRef} onLoginSuccess={handleLoginSuccess} />
+            {!isScrolled && !user && !isLoading && showLoginForm && (
+                <div className="fade-in-out" style={{ opacity: showLoginForm ? 1 : 0 }}>
+                    <LoginForm ref={formRef} onLoginSuccess={handleLoginSuccess} />
+                </div>
             )}
-            {!isScrolled && user && (
-                <div ref={formRef} className="flex flex-row gap-4 items-center justify-center pt-2 pb-2">
+            {!isScrolled && user && showGreeting && (
+                <div ref={formRef} className="flex flex-row gap-4 items-center justify-center pt-2 pb-2 fade-in">
                     <span className="text-lg font-semibold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                         Hello, {user.firstName}!
                     </span>
-                    <button
-                        onClick={handleLogout}
-                        className="px-6 py-2.5 bg-gradient-to-r from-red-500 to-pink-500 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
-                    >
-                        Log out
-                    </button>
                 </div>
             )}
             <Navigation/>
@@ -74,6 +85,25 @@ export default function Header() {
                     top: 0;
                     left: 0;
                     z-index: 1000;
+                }
+
+                .fade-in {
+                    animation: fadeIn 0.5s ease-in;
+                }
+
+                .fade-in-out {
+                    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+                }
+
+                @keyframes fadeIn {
+                    from {
+                        opacity: 0;
+                        transform: translateY(-10px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
                 }
             `}</style>
         </header>
