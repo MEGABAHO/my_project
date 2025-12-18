@@ -45,23 +45,22 @@ export default function Header() {
     }, [formHeight]);
 
     const user = session?.user as any;
-    const isLoading = status === "loading";
 
     // Update states when session changes
     useEffect(() => {
-        if (user) {
+        if (status === "authenticated" && user) {
             setShowLoginForm(false);
             setShowGreeting(true);
-        } else {
+        } else if (status === "unauthenticated") {
             setShowGreeting(false);
             setShowLoginForm(true);
         }
-    }, [user]);
+    }, [user, status]);
 
     return (
         <header
             className={`${isScrolled ? "fixed-header" : ""} header-media grid grid-cols justify-items-center w-full border-b border-white/20`}>
-            {!isScrolled && !user && !isLoading && showLoginForm && (
+            {!isScrolled && !user && showLoginForm && (
                 <div className="fade-in-out" style={{ opacity: showLoginForm ? 1 : 0 }}>
                     <LoginForm ref={formRef} onLoginSuccess={handleLoginSuccess} />
                 </div>
