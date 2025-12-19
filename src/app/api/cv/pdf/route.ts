@@ -58,21 +58,29 @@ export async function GET() {
                     height: 297mm !important;
                     margin: 0 !important;
                     padding: 0 !important;
-                    background: url(https://img.freepik.com/free-vector/white-technology-background_23-2148390328.jpg?w=740&t=st=1712143117~exp=1712143717~hmac=8543a1e99664bb913790c25c04fd2b57936ea2bb7e425074b6b7100c327e6862) no-repeat !important;
+                    background: url(https://img.freepik.com/free-vector/white-technology-background_23-2148390328.jpg?w=740&t=st=1712143117~exp=1712143717~hmac=8543a1e99664bb913790c25c04fd2b57936ea2bb7e425074b6b7100c327e6862) no-repeat center center !important;
                     background-size: cover !important;
                 }
                 
                 body {
-                    background: url(https://img.freepik.com/free-vector/white-technology-background_23-2148390328.jpg?w=740&t=st=1712143117~exp=1712143717~hmac=8543a1e99664bb913790c25c04fd2b57936ea2bb7e425074b6b7100c327e6862) no-repeat !important;
+                    background: url(https://img.freepik.com/free-vector/white-technology-background_23-2148390328.jpg?w=740&t=st=1712143117~exp=1712143717~hmac=8543a1e99664bb913790c25c04fd2b57936ea2bb7e425074b6b7100c327e6862) no-repeat center center !important;
                     background-size: cover !important;
                 }
                 
-                /* Override site background gradient */
+                /* Override site background gradient - hide Container div gradient */
                 html::before,
                 html::after,
                 body::before,
                 body::after {
                     display: none !important;
+                }
+                
+                /* Remove site gradient from Container component */
+                body > div:first-child,
+                .min-h-screen {
+                    background: none !important;
+                    background-image: none !important;
+                    background-color: transparent !important;
                 }
                 
                 .page {
@@ -102,11 +110,12 @@ export async function GET() {
                 
                 /* Position name almost under profile block (same y-axis level) */
                 .name {
-                    top: 22rem !important;
-                    right: 10rem !important;
+                    top: 20rem !important;
+                    right: 8rem !important;
                     left: auto !important;
                     position: absolute !important;
                     margin-left: 0 !important;
+                    margin-top: 0 !important;
                 }
                 
                 .name-block {
