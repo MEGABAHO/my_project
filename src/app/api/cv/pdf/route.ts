@@ -58,11 +58,21 @@ export async function GET() {
                     height: 297mm !important;
                     margin: 0 !important;
                     padding: 0 !important;
+                    background: url(https://img.freepik.com/free-vector/white-technology-background_23-2148390328.jpg?w=740&t=st=1712143117~exp=1712143717~hmac=8543a1e99664bb913790c25c04fd2b57936ea2bb7e425074b6b7100c327e6862) no-repeat !important;
+                    background-size: cover !important;
                 }
                 
                 body {
                     background: url(https://img.freepik.com/free-vector/white-technology-background_23-2148390328.jpg?w=740&t=st=1712143117~exp=1712143717~hmac=8543a1e99664bb913790c25c04fd2b57936ea2bb7e425074b6b7100c327e6862) no-repeat !important;
                     background-size: cover !important;
+                }
+                
+                /* Override site background gradient */
+                html::before,
+                html::after,
+                body::before,
+                body::after {
+                    display: none !important;
                 }
                 
                 .page {
@@ -90,11 +100,13 @@ export async function GET() {
                     z-index: 1;
                 }
                 
-                /* Keep name at original position to avoid cube overlap */
+                /* Position name almost under profile block (same y-axis level) */
                 .name {
-                    top: 12rem !important;
-                    right: 15rem !important;
+                    top: 22rem !important;
+                    right: 10rem !important;
+                    left: auto !important;
                     position: absolute !important;
+                    margin-left: 0 !important;
                 }
                 
                 .name-block {
