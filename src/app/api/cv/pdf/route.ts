@@ -108,14 +108,15 @@ export async function GET() {
                     z-index: 1;
                 }
                 
-                /* Position name right under profile block */
+                /* Position name right under profile block with 30px padding */
                 .name {
                     top: 21rem !important;
-                    left: 8rem !important;
+                    left: 7rem !important;
                     right: auto !important;
                     position: absolute !important;
                     margin-left: 0 !important;
-                    margin-top: 0 !important;
+                    margin-top: 30px !important;
+                    white-space: nowrap !important;
                 }
                 
                 .name-block {
@@ -140,9 +141,9 @@ export async function GET() {
                 .card {
                     transform: none !important;
                     opacity: 1 !important;
-                    width: 100% !important;
+                    width: calc(100% - 10px) !important;
                     max-width: none !important;
-                    margin-right: 0 !important;
+                    margin-right: 10px !important;
                 }
                 
                 .card-back {
