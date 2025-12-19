@@ -53,11 +53,28 @@ export async function GET() {
                     -webkit-print-color-adjust: exact !important;
                 }
                 
+                html, body {
+                    width: 210mm !important;
+                    height: 297mm !important;
+                    margin: 0 !important;
+                    padding: 0 !important;
+                    background: linear-gradient(122deg, rgb(210, 153, 238) 17%, rgb(124, 202, 221) 91%) !important;
+                    background-attachment: fixed !important;
+                    background-size: cover !important;
+                }
+                
                 .page {
                     width: 210mm !important;
                     min-height: 297mm !important;
-                    max-height: 297mm !important;
+                    height: 297mm !important;
                     overflow: visible !important;
+                    background: transparent !important;
+                }
+                
+                #print-zone {
+                    width: 210mm !important;
+                    min-height: 297mm !important;
+                    height: 297mm !important;
                 }
                 
                 .header-block {
@@ -71,10 +88,23 @@ export async function GET() {
                     z-index: 1;
                 }
                 
+                /* Fix name positioning - keep it properly spaced from cube */
                 .name-block {
                     position: relative;
                     z-index: 20;
-                    margin-top: -50px;
+                    margin-top: 20px !important;
+                    margin-left: 0 !important;
+                    padding-left: 0 !important;
+                }
+                
+                .name-wrapper {
+                    margin-left: 0 !important;
+                    padding-left: 0 !important;
+                }
+                
+                .name-gredient {
+                    margin-left: 0 !important;
+                    padding-left: 0 !important;
                 }
                 
                 /* Ensure cards are visible */
@@ -92,17 +122,21 @@ export async function GET() {
                     display: none !important;
                 }
                 
-                /* Fix profile text alignment */
-                .logo-profil {
+                /* Fix profile text alignment - remove left offset */
+                .profil {
+                    left: 0 !important;
+                    margin-left: 0 !important;
                     text-align: left !important;
                 }
                 
-                /* Ensure background fills entire page */
-                body {
-                    background: linear-gradient(122deg, rgb(210, 153, 238) 17%, rgb(124, 202, 221) 91%) !important;
-                    background-attachment: fixed !important;
-                    width: 210mm !important;
-                    height: 297mm !important;
+                .logo-profil {
+                    text-align: left !important;
+                    margin-left: 0 !important;
+                }
+                
+                .profil p {
+                    text-align: left !important;
+                    margin-left: 0 !important;
                 }
                 
                 /* Show LinkedIn button in PDF */

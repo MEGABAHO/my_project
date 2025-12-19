@@ -23,6 +23,8 @@
         margin: 0 !important;
         padding: 0 !important;
         background: linear-gradient(122deg, rgb(210, 153, 238) 17%, rgb(124, 202, 221) 91%) !important;
+        background-size: cover !important;
+        background-attachment: fixed !important;
     }
 
     .header-media {
@@ -56,17 +58,19 @@
     .page {
         display: grid !important;
         width: 210mm !important;
-        height: auto !important;
+        height: 297mm !important;
         min-height: 297mm !important;
         max-height: none !important;
         box-shadow: none !important;
         overflow: visible !important;
         page-break-after: avoid;
+        background: transparent !important;
     }
 
     #print-zone {
         height: auto !important;
         min-height: 297mm !important;
+        width: 210mm !important;
     }
 
     /* Ensure all experience cards are visible */
@@ -109,11 +113,22 @@
         transform: none !important;
     }
     
-    /* Ensure name doesn't overlap cube */
+    /* Ensure name doesn't overlap cube - keep proper spacing */
     .name-block {
         position: relative;
         z-index: 20;
-        margin-top: 20px;
+        margin-top: 20px !important;
+        margin-left: 0 !important;
+    }
+    
+    .name-wrapper {
+        margin-left: 0 !important;
+        padding-left: 0 !important;
+    }
+    
+    .name-gredient {
+        margin-left: 0 !important;
+        padding-left: 0 !important;
     }
 
     /* Text gradient fallbacks for print */
@@ -125,13 +140,26 @@
         background-clip: initial !important;
     }
 
+    /* Fix profile section - remove left offset */
+    .profil {
+        left: 0 !important;
+        margin-left: 0 !important;
+        text-align: left !important;
+    }
+
     .logo-profil {
         opacity: 0.9;
         text-align: left !important;
+        margin-left: 0 !important;
         background: none !important;
         -webkit-text-fill-color: #4e2979 !important;
         color: #4e2979 !important;
         background-clip: initial !important;
+    }
+    
+    .profil p {
+        text-align: left !important;
+        margin-left: 0 !important;
     }
 
     .title-comp {
