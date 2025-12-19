@@ -58,8 +58,10 @@ export async function GET() {
                     height: 297mm !important;
                     margin: 0 !important;
                     padding: 0 !important;
-                    background: linear-gradient(122deg, rgb(210, 153, 238) 17%, rgb(124, 202, 221) 91%) !important;
-                    background-attachment: fixed !important;
+                }
+                
+                body {
+                    background: url(https://img.freepik.com/free-vector/white-technology-background_23-2148390328.jpg?w=740&t=st=1712143117~exp=1712143717~hmac=8543a1e99664bb913790c25c04fd2b57936ea2bb7e425074b6b7100c327e6862) no-repeat !important;
                     background-size: cover !important;
                 }
                 
@@ -88,23 +90,24 @@ export async function GET() {
                     z-index: 1;
                 }
                 
-                /* Fix name positioning - keep it properly spaced from cube */
+                /* Keep name at original position to avoid cube overlap */
+                .name {
+                    top: 12rem !important;
+                    right: 15rem !important;
+                    position: absolute !important;
+                }
+                
                 .name-block {
                     position: relative;
                     z-index: 20;
-                    margin-top: 20px !important;
-                    margin-left: 0 !important;
-                    padding-left: 0 !important;
                 }
                 
                 .name-wrapper {
-                    margin-left: 0 !important;
-                    padding-left: 0 !important;
+                    position: relative;
                 }
                 
                 .name-gredient {
-                    margin-left: 0 !important;
-                    padding-left: 0 !important;
+                    position: relative;
                 }
                 
                 /* Ensure cards are visible */
@@ -122,21 +125,18 @@ export async function GET() {
                     display: none !important;
                 }
                 
-                /* Fix profile text alignment - remove left offset */
+                /* Keep profile section's original left offset */
                 .profil {
-                    left: 0 !important;
-                    margin-left: 0 !important;
-                    text-align: left !important;
+                    position: relative;
+                    left: 10rem !important;
                 }
                 
                 .logo-profil {
-                    text-align: left !important;
-                    margin-left: 0 !important;
+                    position: relative;
                 }
                 
                 .profil p {
-                    text-align: left !important;
-                    margin-left: 0 !important;
+                    text-align: left;
                 }
                 
                 /* Show LinkedIn button in PDF */
