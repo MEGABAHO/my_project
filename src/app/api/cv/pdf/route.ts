@@ -132,18 +132,26 @@ export async function GET() {
                     position: relative;
                 }
                 
-                /* Ensure cards are visible */
+                /* Disable all animations and transitions */
+                * {
+                    animation: none !important;
+                    animation-delay: 0s !important;
+                    transition: none !important;
+                }
+                
+                /* Ensure cards are visible in final position */
                 .item {
                     opacity: 1 !important;
                     visibility: visible !important;
                 }
                 
                 .card {
-                    transform: none !important;
+                    transform: translateX(-15px) !important; /* Final position from animation */
                     opacity: 1 !important;
                     width: calc(100% - 10px) !important;
                     max-width: none !important;
                     margin-right: 10px !important;
+                    animation: none !important;
                 }
                 
                 .card-back {
@@ -154,6 +162,15 @@ export async function GET() {
                 .profil {
                     position: relative;
                     left: 7rem !important;
+                }
+                
+                /* Sidebar elements in final position - no animation */
+                .competences-acquises,
+                .contacts-border,
+                .hobbies,
+                .langues-modern {
+                    animation: none !important;
+                    transform: translateX(0px) !important; /* Final position */
                 }
                 
                 .logo-profil {
