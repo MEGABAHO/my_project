@@ -13,15 +13,16 @@
 
 @media print {
     * {
-        print-color-adjust: exact;
-        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact !important;
+        -webkit-print-color-adjust: exact !important;
     }
 
     html, body {
-        width: 210mm;
-        height: 297mm;
-        margin: 0;
-        padding: 0;
+        width: 210mm !important;
+        height: 297mm !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: linear-gradient(122deg, rgb(210, 153, 238) 17%, rgb(124, 202, 221) 91%) !important;
     }
 
     .header-media {
@@ -36,10 +37,16 @@
         page-break-inside: avoid;
     }
 
-    .LinkedIn,
+    /* Hide only print/download buttons, keep LinkedIn visible */
     .Download,
     .Print {
         display: none !important;
+    }
+    
+    .LinkedIn {
+        display: flex !important;
+        opacity: 1 !important;
+        visibility: visible !important;
     }
 
     .footer-media {
@@ -50,19 +57,32 @@
         display: grid !important;
         width: 210mm !important;
         height: auto !important;
-        min-height: 297mm;
-        max-height: 297mm;
+        min-height: 297mm !important;
+        max-height: none !important;
         box-shadow: none !important;
-        overflow: hidden;
+        overflow: visible !important;
         page-break-after: avoid;
     }
 
     #print-zone {
         height: auto !important;
-        max-height: 297mm;
+        min-height: 297mm !important;
+    }
+
+    /* Ensure all experience cards are visible */
+    .item {
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: block !important;
     }
 
     /* Card hover effects disabled in print */
+    .card {
+        transform: none !important;
+        opacity: 1 !important;
+        display: block !important;
+    }
+    
     .card-back {
         display: none !important;
     }
@@ -71,9 +91,11 @@
         transform: none !important;
     }
 
-    /* Cube print styling */
+    /* Cube print styling - fixed positioning */
     .cube {
-        transform: rotateY(0deg) !important;
+        transform: none !important;
+        position: relative;
+        z-index: 1;
     }
 
     .cube-part {
@@ -85,6 +107,13 @@
         width: 230px !important;
         height: 230px !important;
         transform: none !important;
+    }
+    
+    /* Ensure name doesn't overlap cube */
+    .name-block {
+        position: relative;
+        z-index: 20;
+        margin-top: 20px;
     }
 
     /* Text gradient fallbacks for print */
@@ -98,6 +127,7 @@
 
     .logo-profil {
         opacity: 0.9;
+        text-align: left !important;
         background: none !important;
         -webkit-text-fill-color: #4e2979 !important;
         color: #4e2979 !important;
