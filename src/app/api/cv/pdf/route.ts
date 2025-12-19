@@ -108,11 +108,11 @@ export async function GET() {
                     z-index: 1;
                 }
                 
-                /* Position name almost under profile block (same y-axis level) */
+                /* Position name right under profile block */
                 .name {
-                    top: 20rem !important;
-                    right: 8rem !important;
-                    left: auto !important;
+                    top: 21rem !important;
+                    left: 8rem !important;
+                    right: auto !important;
                     position: absolute !important;
                     margin-left: 0 !important;
                     margin-top: 0 !important;
@@ -140,16 +140,19 @@ export async function GET() {
                 .card {
                     transform: none !important;
                     opacity: 1 !important;
+                    width: 100% !important;
+                    max-width: none !important;
+                    margin-right: 0 !important;
                 }
                 
                 .card-back {
                     display: none !important;
                 }
                 
-                /* Keep profile section's original left offset */
+                /* Shift profile section slightly to the left */
                 .profil {
                     position: relative;
-                    left: 10rem !important;
+                    left: 7rem !important;
                 }
                 
                 .logo-profil {
