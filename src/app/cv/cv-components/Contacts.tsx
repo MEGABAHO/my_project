@@ -1,7 +1,31 @@
 import {EnvelopeOpenIcon, LinkedInLogoIcon, MobileIcon, DownloadIcon, CopyIcon} from '@radix-ui/react-icons';
-import LinkPrint from "@/components/link-print";
+import CVPrintButton from "@/components/cv-print-button";
 
-export default function Contacts() {
+interface ContactsProps {
+    printRef: React.RefObject<HTMLDivElement>;
+}
+
+export default function Contacts({ printRef }: ContactsProps) {
+    const handleDownloadPDF = async () => {
+        try {
+            const response = await fetch('/api/cv/pdf');
+            if (!response.ok) throw new Error('Failed to generate PDF');
+            
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Ivan_Topychkanov_CV.pdf';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        } catch (error) {
+            console.error('Error downloading PDF:', error);
+            alert('Failed to download PDF. Please try again.');
+        }
+    };
+
     return (
         <fieldset className="contacts-border">
             <legend className="contacts-legend">Contacts</legend>
@@ -52,10 +76,10 @@ export default function Contacts() {
                     </div>
                     <button 
                         className="contact-button" 
-                        onClick={() => window.print()}
+                        onClick={handleDownloadPDF}
                     >
                         <span className="contact-button-text">Download CV</span>
-                        <span className="contact-button-subtext">Print to PDF</span>
+                        <span className="contact-button-subtext">Save as PDF</span>
                     </button>
                 </div>
                 
@@ -64,7 +88,7 @@ export default function Contacts() {
                         <CopyIcon className="contact-icon"/>
                     </div>
                     <div className="contact-print-wrapper">
-                        <LinkPrint/>
+                        <CVPrintButton contentRef={printRef} />
                     </div>
                 </div>
             </address>

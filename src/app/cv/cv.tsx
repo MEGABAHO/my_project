@@ -1,5 +1,5 @@
 "use client"
-import React from "react";
+import React, { useRef } from "react";
 import "../cv/style.css"
 import "../cv/cube.css"
 import "../cv/animations.css"
@@ -18,9 +18,11 @@ import FooterBlock from "./cv-components/FooterBlock";
 
 
 export default function Cv() {
+    const printRef = useRef<HTMLDivElement>(null);
+
     return (
 
-        <div className="page w-[1000px]" id={"print-zone"}>
+        <div className="page w-[1000px]" id={"print-zone"} ref={printRef}>
             <div className="header-block">
                 <Cube/>
                 <Name/>
@@ -29,7 +31,7 @@ export default function Cv() {
 
             <div className="sidebar">
                 <Competences/>
-                <Contacts/>
+                <Contacts printRef={printRef}/>
                 <Langues/>
                 <Hobbies/>
             </div>

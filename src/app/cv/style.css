@@ -5,7 +5,48 @@
 }
 
 
-@media print and (-webkit-min-device-pixel-ratio: 0) {
+/* Print styles for A4 layout */
+@page {
+    size: A4;
+    margin: 0;
+}
+
+@media print {
+    * {
+        print-color-adjust: exact !important;
+        -webkit-print-color-adjust: exact !important;
+    }
+
+    html, body {
+        width: 210mm !important;
+        height: 297mm !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: url(https://img.freepik.com/free-vector/white-technology-background_23-2148390328.jpg?w=740&t=st=1712143117~exp=1712143717~hmac=8543a1e99664bb913790c25c04fd2b57936ea2bb7e425074b6b7100c327e6862) no-repeat center center !important;
+        background-size: cover !important;
+    }
+    
+    body {
+        background: url(https://img.freepik.com/free-vector/white-technology-background_23-2148390328.jpg?w=740&t=st=1712143117~exp=1712143717~hmac=8543a1e99664bb913790c25c04fd2b57936ea2bb7e425074b6b7100c327e6862) no-repeat center center !important;
+        background-size: cover !important;
+    }
+    
+    /* Override site background gradient - hide Container div gradient */
+    html::before,
+    html::after,
+    body::before,
+    body::after {
+        display: none !important;
+    }
+    
+    /* Remove site gradient from Container component */
+    body > div:first-child,
+    .min-h-screen {
+        background: none !important;
+        background-image: none !important;
+        background-color: transparent !important;
+    }
+
     .header-media {
         display: none;
     }
@@ -15,50 +56,156 @@
     .footer-block,
     .sidebar {
         box-shadow: none !important;
+        page-break-inside: avoid;
     }
-    .LinkedIn,
+
+    /* Hide only print/download buttons, keep LinkedIn visible */
     .Download,
     .Print {
-        display: none;
+        display: none !important;
     }
+    
+    .LinkedIn {
+        display: flex !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
     .footer-media {
         display: none;
     }
+
     .page {
-        display: block;
-        width: 100%;
+        display: grid !important;
+        width: 210mm !important;
+        height: 297mm !important;
+        min-height: 297mm !important;
+        max-height: none !important;
+        box-shadow: none !important;
+        overflow: visible !important;
+        page-break-after: avoid;
+        background: transparent !important;
     }
+
     #print-zone {
-        height: 1300px;
+        height: auto !important;
+        min-height: 297mm !important;
+        width: 210mm !important;
     }
+
+    /* Ensure all experience cards are visible */
+    .item {
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: block !important;
+    }
+
+    /* Card hover effects disabled in print - disable animations and set final position */
+    .card {
+        transform: translateX(-15px) !important; /* Final position from animation */
+        opacity: 1 !important;
+        display: block !important;
+        width: calc(100% - 10px) !important;
+        max-width: none !important;
+        margin-right: 10px !important;
+        animation: none !important; /* Disable animation */
+        animation-delay: 0s !important;
+    }
+    
     .card-back {
-        display: none;
+        display: none !important;
     }
+
+    .item:hover .card {
+        transform: none !important;
+    }
+
+    /* Cube print styling - fixed positioning */
     .cube {
-        transform: rotateY(0deg); /* Установить фронтальную сторону вперед */
+        transform: none !important;
+        position: relative;
+        z-index: 1;
     }
+
     .cube-part {
-        display: none;
+        display: none !important;
     }
+
     .front {
         display: block !important;
         width: 230px !important;
         height: 230px !important;
+        transform: none !important;
     }
+    
+    /* Position name right under profile block with 30px padding */
+    .name {
+        top: 21rem !important;
+        left: 7rem !important;
+        right: auto !important;
+        position: absolute !important;
+        margin-left: 0 !important;
+        margin-top: 30px !important;
+        white-space: nowrap !important;
+    }
+    
+    .name-block {
+        position: relative;
+        z-index: 20;
+    }
+    
+    .name-wrapper {
+        position: relative;
+    }
+    
+    .name-gredient {
+        position: relative;
+    }
+
+    /* Text gradient fallbacks for print */
     .name-gredient {
         opacity: 0.9;
         background: none !important;
         -webkit-text-fill-color: #4e2979 !important;
+        color: #4e2979 !important;
         background-clip: initial !important;
     }
+
+    /* Disable all animations in print media */
+    * {
+        animation: none !important;
+        animation-delay: 0s !important;
+        transition: none !important;
+    }
+    
+    /* Shift profile section slightly to the left */
+    .profil {
+        position: relative;
+        left: 7rem !important;
+    }
+    
+    /* Sidebar elements in final position */
+    .competences-acquises,
+    .contacts-border,
+    .hobbies,
+    .langues-modern {
+        animation: none !important;
+        transform: translateX(0px) !important; /* Final position */
+    }
+
     .logo-profil {
         opacity: 0.9;
         background: none !important;
         -webkit-text-fill-color: #4e2979 !important;
+        color: #4e2979 !important;
         background-clip: initial !important;
     }
-    .title-comp {
+    
+    .profil p {
+        text-align: left;
+    }
 
+    .title-comp {
         width: 200px;
         height: 30px;
         font-size: 15px;
@@ -67,11 +214,40 @@
         border-radius: 40px 5px / 20px 10px 30px;
     }
 
+    /* Prevent orphans and widows */
     .hobbies,
     .langues,
     .contacts-border,
     .competences {
-        margin-bottom: auto !important;
+        margin-bottom: 4px !important;
+        page-break-inside: avoid;
+    }
+
+    .experiences {
+        page-break-inside: avoid;
+    }
+
+    .item {
+        page-break-inside: avoid;
+        margin: 5px 10px;
+        height: auto;
+    }
+
+    .profil {
+        page-break-inside: avoid;
+    }
+
+    /* Ensure footer stays at bottom */
+    .footer-block {
+        margin-top: auto;
+        page-break-inside: avoid;
+    }
+
+    /* Hide hover effects */
+    .contact-item:hover,
+    .language-item:hover,
+    .profil:hover {
+        transform: none !important;
     }
 }
 

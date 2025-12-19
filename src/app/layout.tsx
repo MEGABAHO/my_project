@@ -5,6 +5,7 @@ import React, {ReactNode} from "react";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import Container from "@/components/container";
+import SessionProvider from "@/components/session-provider";
 
 const geistSans = localFont({
     src: "./fonts/GeistVF.woff",
@@ -30,11 +31,13 @@ export default function RootLayout({
     return (
         <html lang="en" suppressHydrationWarning>
         <body className={` ${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <Container>
-            <Header/>
-            {children}
-            <Footer/>
-        </Container>
+        <SessionProvider>
+            <Container>
+                <Header/>
+                {children}
+                <Footer/>
+            </Container>
+        </SessionProvider>
         </body>
         </html>
     );
