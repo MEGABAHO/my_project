@@ -5,7 +5,25 @@
 }
 
 
-@media print and (-webkit-min-device-pixel-ratio: 0) {
+/* Print styles for A4 layout */
+@page {
+    size: A4;
+    margin: 0;
+}
+
+@media print {
+    * {
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+
+    html, body {
+        width: 210mm;
+        height: 297mm;
+        margin: 0;
+        padding: 0;
+    }
+
     .header-media {
         display: none;
     }
@@ -15,50 +33,78 @@
     .footer-block,
     .sidebar {
         box-shadow: none !important;
+        page-break-inside: avoid;
     }
+
     .LinkedIn,
     .Download,
     .Print {
-        display: none;
+        display: none !important;
     }
+
     .footer-media {
         display: none;
     }
+
     .page {
-        display: block;
-        width: 100%;
+        display: grid !important;
+        width: 210mm !important;
+        height: auto !important;
+        min-height: 297mm;
+        max-height: 297mm;
+        box-shadow: none !important;
+        overflow: hidden;
+        page-break-after: avoid;
     }
+
     #print-zone {
-        height: 1300px;
+        height: auto !important;
+        max-height: 297mm;
     }
+
+    /* Card hover effects disabled in print */
     .card-back {
-        display: none;
+        display: none !important;
     }
+
+    .item:hover .card {
+        transform: none !important;
+    }
+
+    /* Cube print styling */
     .cube {
-        transform: rotateY(0deg); /* Установить фронтальную сторону вперед */
+        transform: rotateY(0deg) !important;
     }
+
     .cube-part {
-        display: none;
+        display: none !important;
     }
+
     .front {
         display: block !important;
         width: 230px !important;
         height: 230px !important;
+        transform: none !important;
     }
+
+    /* Text gradient fallbacks for print */
     .name-gredient {
         opacity: 0.9;
         background: none !important;
         -webkit-text-fill-color: #4e2979 !important;
+        color: #4e2979 !important;
         background-clip: initial !important;
     }
+
     .logo-profil {
         opacity: 0.9;
         background: none !important;
         -webkit-text-fill-color: #4e2979 !important;
+        color: #4e2979 !important;
         background-clip: initial !important;
     }
-    .title-comp {
 
+    .title-comp {
         width: 200px;
         height: 30px;
         font-size: 15px;
@@ -67,11 +113,40 @@
         border-radius: 40px 5px / 20px 10px 30px;
     }
 
+    /* Prevent orphans and widows */
     .hobbies,
     .langues,
     .contacts-border,
     .competences {
-        margin-bottom: auto !important;
+        margin-bottom: 4px !important;
+        page-break-inside: avoid;
+    }
+
+    .experiences {
+        page-break-inside: avoid;
+    }
+
+    .item {
+        page-break-inside: avoid;
+        margin: 5px 10px;
+        height: auto;
+    }
+
+    .profil {
+        page-break-inside: avoid;
+    }
+
+    /* Ensure footer stays at bottom */
+    .footer-block {
+        margin-top: auto;
+        page-break-inside: avoid;
+    }
+
+    /* Hide hover effects */
+    .contact-item:hover,
+    .language-item:hover,
+    .profil:hover {
+        transform: none !important;
     }
 }
 
